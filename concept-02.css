@@ -378,11 +378,14 @@ figcaption,
   border-block: 1px solid var(--line);
 }
 
+/* Компетентность: внешняя рамка того же цвета, что и внутренние линии,
+   поэтому слева и справа линии такие же, как между карточками */
 .competence-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
   background: var(--line);
+  border: 1px solid var(--line);
   margin-top: 32px;
 }
 
