@@ -341,13 +341,19 @@ figcaption,
   padding: 0;
 }
 
+/* Направления: все строки одной высоты, содержимое с одинакового отступа */
 .spec-list {
+  display: grid;
+  grid-auto-rows: 1fr;
   background: var(--paper);
   border: 1px solid var(--line);
 }
 
 .spec-list li {
-  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 24px;
   border-bottom: 1px solid var(--line);
 }
 
@@ -389,11 +395,20 @@ figcaption,
   grid-column: span 2;
 }
 
+/* Порядок работы: карточки одной высоты, заголовки на одной линии */
 .flow {
   margin-top: 32px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 28px 64px;
+  grid-auto-rows: 1fr;
+  gap: 24px;
+}
+
+.flow li {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--blue);
+  padding: 24px;
 }
 
 .discuss {
@@ -587,6 +602,12 @@ dd {
 
   .competence-grid .span-wide {
     grid-column: auto;
+  }
+
+  /* На телефоне высота карточек определяется их содержимым */
+  .flow,
+  .spec-list {
+    grid-auto-rows: auto;
   }
 
   .hero-frame img {
