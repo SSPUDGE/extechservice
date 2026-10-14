@@ -7,6 +7,7 @@
   --blue: #1f4e79;
   --blue-deep: #163a5c;
   --steel: #6d7883;
+  --accent: #f0b429;
   --danger: #9c2f2f;
   --ok: #1f6b45;
   --focus: #1f4e79;
@@ -208,7 +209,7 @@ h3 {
 }
 
 .lead,
-.split-intro p,
+.poster-lead,
 .spec-list p,
 .competence-grid p,
 .flow p {
@@ -307,20 +308,7 @@ figcaption,
   padding: 72px 0;
 }
 
-.split {
-  display: grid;
-  grid-template-columns: 0.78fr 1.22fr;
-  gap: 48px;
-  align-items: start;
-}
-
-.split-intro {
-  position: sticky;
-  top: calc(var(--header) + 24px);
-}
-
 /* Единый отступ под всеми заголовками секций */
-.split-intro h2,
 .competence h2,
 #workflow h2,
 .discuss h2,
@@ -328,8 +316,83 @@ figcaption,
   margin-bottom: 16px;
 }
 
-.inset-frame {
-  margin-top: 28px;
+/* ===== Направления ремонта: оформление в виде афиши ===== */
+.poster {
+  position: relative;
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  min-height: 600px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+/* Жёлтая диагональная подложка под фото */
+.poster::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 40%;
+  background: var(--accent);
+  clip-path: polygon(0 0, 100% 0, 84% 100%, 0 100%);
+}
+
+/* Фото с косым срезом (чуть меньше подложки, поэтому сбоку видна жёлтая полоса) */
+.poster .inset-frame {
+  position: relative;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  clip-path: polygon(0 0, 96% 0, 80% 100%, 0 100%);
+}
+
+.poster .inset-frame img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.poster .inset-frame .media-fallback {
+  height: 100%;
+  min-height: 240px;
+}
+
+/* Жёлтые вертикальные полоски в правом верхнем углу */
+.poster-stripes {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  width: 128px;
+  height: 28px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--accent) 0 8px,
+    transparent 8px 16px
+  );
+}
+
+.poster-body {
+  position: relative;
+  padding: 80px 48px 48px 24px;
+}
+
+.poster h2 {
+  margin-bottom: 16px;
+  font-size: clamp(1.9rem, 3.6vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.02;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+.poster-lead {
+  margin: 0 0 28px;
+  max-width: 48ch;
 }
 
 .spec-list,
@@ -341,30 +404,30 @@ figcaption,
   padding: 0;
 }
 
-/* Направления: все строки одной высоты, содержимое с одинакового отступа */
+/* Список направлений: плашки одной высоты с жёлтой полосой слева */
 .spec-list {
   display: grid;
   grid-auto-rows: 1fr;
-  background: var(--paper);
-  border: 1px solid var(--line);
+  gap: 12px;
 }
 
 .spec-list li {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 24px;
-  border-bottom: 1px solid var(--line);
-}
-
-.spec-list li:last-child {
-  border-bottom: 0;
+  padding: 14px 18px;
+  background: #f6f8fa;
+  border-left: 4px solid var(--accent);
 }
 
 .spec-list h3,
 .competence-grid h3,
 .flow h3 {
   margin-bottom: 8px;
+}
+
+.spec-list h3 {
+  margin-bottom: 4px;
 }
 
 .spec-list p,
@@ -545,7 +608,6 @@ dd {
 
 @media (max-width: 1080px) {
   .hero-grid,
-  .split,
   .discuss-grid,
   .competence-grid,
   .contact-spec,
@@ -556,9 +618,35 @@ dd {
   .competence-grid .span-wide {
     grid-column: 1 / -1;
   }
+}
 
-  .split-intro {
-    position: static;
+/* Афиша «Направления»: на узких экранах фото уходит наверх */
+@media (max-width: 900px) {
+  .poster {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .poster::before {
+    display: none;
+  }
+
+  .poster .inset-frame {
+    height: 260px;
+    clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+    border-bottom: 0;
+    background: var(--accent);
+  }
+
+  .poster-body {
+    padding: 36px 28px 32px;
+  }
+
+  .poster-stripes {
+    top: 20px;
+    right: 20px;
+    width: 96px;
+    height: 20px;
   }
 }
 
@@ -594,7 +682,6 @@ dd {
   }
 
   .hero-grid,
-  .split,
   .discuss-grid,
   .competence-grid,
   .contact-spec,
@@ -611,6 +698,10 @@ dd {
   .flow,
   .spec-list {
     grid-auto-rows: auto;
+  }
+
+  .poster-body {
+    padding: 28px 20px 24px;
   }
 
   .hero-frame img {
