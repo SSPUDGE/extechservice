@@ -221,27 +221,18 @@ h3 {
   max-width: 48ch;
 }
 
-.hero-frame,
-.inset-frame {
+.hero-frame {
   position: relative;
   background: var(--paper);
   border: 1px solid var(--line);
   margin: 0;
-}
-
-.hero-frame {
   min-height: 420px;
 }
 
-.hero-frame img,
-.inset-frame img {
+.hero-frame img {
   width: 100%;
   height: 520px;
   object-fit: cover;
-}
-
-.inset-frame img {
-  height: 220px;
 }
 
 .frame-marks::before,
@@ -294,13 +285,11 @@ figcaption,
   display: none;
 }
 
-.hero-frame.is-fallback .media-fallback,
-.inset-frame.is-fallback .media-fallback {
+.hero-frame.is-fallback .media-fallback {
   display: grid;
 }
 
-.hero-frame.is-fallback img,
-.inset-frame.is-fallback img {
+.hero-frame.is-fallback img {
   display: none;
 }
 
@@ -316,50 +305,24 @@ figcaption,
   margin-bottom: 16px;
 }
 
-/* ===== Направления ремонта: оформление в виде афиши ===== */
+/* ===== Направления ремонта: афиша без фото ===== */
 .poster {
   position: relative;
-  display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
-  min-height: 600px;
   background: var(--paper);
   border: 1px solid var(--line);
   overflow: hidden;
 }
 
-/* Жёлтая диагональная подложка под фото */
+/* Жёлтая диагональная полоса слева */
 .poster::before {
   content: "";
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
-  width: 40%;
+  width: 120px;
   background: var(--accent);
-  clip-path: polygon(0 0, 100% 0, 84% 100%, 0 100%);
-}
-
-/* Фото с косым срезом (чуть меньше подложки, поэтому сбоку видна жёлтая полоса) */
-.poster .inset-frame {
-  position: relative;
-  margin: 0;
-  border: 0;
-  background: transparent;
-  clip-path: polygon(0 0, 96% 0, 80% 100%, 0 100%);
-}
-
-.poster .inset-frame img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.poster .inset-frame .media-fallback {
-  height: 100%;
-  min-height: 240px;
+  clip-path: polygon(0 0, 100% 0, 55% 100%, 0 100%);
 }
 
 /* Жёлтые вертикальные полоски в правом верхнем углу */
@@ -378,11 +341,12 @@ figcaption,
 
 .poster-body {
   position: relative;
-  padding: 80px 48px 48px 24px;
+  padding: 72px 48px 48px 168px;
 }
 
 .poster h2 {
   margin-bottom: 16px;
+  max-width: 14ch;
   font-size: clamp(1.9rem, 3.6vw, 3.2rem);
   font-weight: 700;
   line-height: 1.02;
@@ -392,7 +356,7 @@ figcaption,
 
 .poster-lead {
   margin: 0 0 28px;
-  max-width: 48ch;
+  max-width: 56ch;
 }
 
 .spec-list,
@@ -620,30 +584,26 @@ dd {
   }
 }
 
-/* Афиша «Направления»: на узких экранах фото уходит наверх */
+/* Афиша «Направления»: на узких экранах полоса слева становится линией сверху */
 @media (max-width: 900px) {
-  .poster {
-    grid-template-columns: 1fr;
-    min-height: 0;
-  }
-
   .poster::before {
-    display: none;
-  }
-
-  .poster .inset-frame {
-    height: 260px;
-    clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
-    border-bottom: 0;
-    background: var(--accent);
+    right: 0;
+    bottom: auto;
+    width: auto;
+    height: 12px;
+    clip-path: none;
   }
 
   .poster-body {
-    padding: 36px 28px 32px;
+    padding: 56px 28px 32px;
+  }
+
+  .poster h2 {
+    max-width: none;
   }
 
   .poster-stripes {
-    top: 20px;
+    top: 28px;
     right: 20px;
     width: 96px;
     height: 20px;
@@ -701,7 +661,7 @@ dd {
   }
 
   .poster-body {
-    padding: 28px 20px 24px;
+    padding: 52px 20px 24px;
   }
 
   .hero-frame img {
