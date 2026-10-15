@@ -654,3 +654,48 @@ textarea:focus-visible,
     width: calc(100% - 24px);
   }
 }
+
+/* Интерактивные карточки услуг */
+.service-grid .card {
+  position: relative;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.service-grid .card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 18px 32px rgba(0, 0, 0, 0.28);
+  border-color: var(--yellow);
+  background-color: #24292e;
+}
+
+.service-grid .card h3 {
+  transition: color 0.25s ease;
+}
+
+.service-grid .card:hover h3 {
+  color: var(--yellow);
+}
+
+/* Эффект при переходе с клавиатуры */
+.service-grid .card:focus-within {
+  transform: translateY(-5px);
+  border-color: var(--yellow);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+}
+
+/* Отключение анимации по настройкам пользователя */
+@media (prefers-reduced-motion: reduce) {
+  .service-grid .card,
+  .service-grid .card h3 {
+    transition: none;
+  }
+
+  .service-grid .card:hover,
+  .service-grid .card:focus-within {
+    transform: none;
+  }
+}
