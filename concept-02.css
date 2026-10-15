@@ -10,7 +10,6 @@
   --danger: #9c2f2f;
   --ok: #1f6b45;
 
-  --cell: 32px;
   --gutter: 32px;
   --section-space: 64px;
 
@@ -35,24 +34,8 @@ body {
   overflow-x: hidden;
   font-family: var(--sans);
   color: var(--ink);
-  background-color: var(--bg);
+  background: var(--bg);
   line-height: 1.6;
-
-  /* Непрерывная сетка на всю ширину экрана */
-  background-image:
-    linear-gradient(
-      to bottom,
-      rgba(31, 78, 121, 0.055) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      to right,
-      rgba(31, 78, 121, 0.055) 1px,
-      transparent 1px
-    );
-  background-size: var(--cell) var(--cell);
-  background-position: 0 0;
-  background-repeat: repeat;
 }
 
 img,
@@ -93,15 +76,8 @@ button {
   top: 12px;
 }
 
-/*
-  Контейнер имеет ширину, кратную клетке.
-  На широких экранах: 1152 px = 36 клеток по 32 px.
-*/
 .shell {
-  width: min(
-    1152px,
-    calc(100% - 2 * var(--gutter))
-  );
+  width: min(1152px, calc(100% - 2 * var(--gutter)));
   margin-inline: auto;
 }
 
@@ -1041,7 +1017,6 @@ textarea:focus {
 /* Мобильные устройства */
 @media (max-width: 760px) {
   :root {
-    --cell: 16px;
     --gutter: 16px;
     --section-space: 48px;
   }
