@@ -481,21 +481,21 @@ figcaption,
 .roller {
   position: absolute;
   bottom: 48px;
-  width: clamp(180px, 22vw, 340px);
+  width: clamp(270px, 33vw, 510px);
   height: auto;
   pointer-events: none;
 }
 
-/* Справа: фото как есть, наполовину за краем, видна передняя часть с вальцом */
+/* Справа: фото как есть, чуть больше половины видно, передняя часть с вальцом */
 .roller-right {
   right: 0;
-  transform: translateX(50%);
+  transform: translateX(38%);
 }
 
 /* Слева: фото отражено, видна та же передняя часть */
 .roller-left {
   left: 0;
-  transform: translateX(-50%) scaleX(-1);
+  transform: translateX(-38%) scaleX(-1);
 }
 
 .discuss {
