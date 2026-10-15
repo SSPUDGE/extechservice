@@ -1,37 +1,31 @@
 (function () {
-  var nav = document.getElementById("site-nav");
-  var toggle = document.querySelector(".nav-toggle");
+  var form = document.getElementById("visit-form");
+  var message = document.getElementById("form-message");
 
-  function setNav(open) {
-    if (!nav || !toggle) return;
-    nav.classList.toggle("is-open", open);
-    toggle.setAttribute("aria-expanded", String(open));
-    toggle.setAttribute("aria-label", open ? "Закрыть меню" : "Открыть меню");
-  }
+  if (form && message) {
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
 
-  if (toggle && nav) {
-    toggle.addEventListener("click", function () {
-      setNav(!nav.classList.contains("is-open"));
+      if (!form.reportValidity()) {
+        return;
+      }
+
+      message.textContent =
+        "Мы свяжемся с вами через 15 минут. Внимание: это демонстрация, заявка пока не отправлена.";
+
+      message.classList.add("is-visible");
     });
 
-    nav.querySelectorAll("a").forEach(function (link) {
-      link.addEventListener("click", function () {
-        setNav(false);
+    form.querySelectorAll("input, textarea").forEach(function (field) {
+      field.addEventListener("input", function () {
+        message.classList.remove("is-visible");
+        message.textContent = "";
       });
     });
-
-    document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape") setNav(false);
-    });
-
-    // При переходе на широкий экран сбрасываем состояние мобильного меню
-    window.addEventListener("resize", function () {
-      if (window.innerWidth > 760) setNav(false);
-    });
   }
 
-  // Если изображение техники не загрузилось, панель остаётся с подписью и чертёжной сеткой
   var machine = document.querySelector(".hero-machine");
+
   if (machine) {
     machine.addEventListener("error", function () {
       machine.hidden = true;
