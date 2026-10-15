@@ -1,3 +1,4 @@
+
 (function () {
   var nav = document.getElementById("primary-nav");
   var toggle = document.querySelector(".menu-btn");
@@ -72,31 +73,24 @@
     var track = document.querySelector(".dig");
     if (!track) return;
 
-    var reduce =
-      window.matchMedia &&
+    var reduce = window.matchMedia &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (reduce || !("IntersectionObserver" in window)) return;
 
     track.classList.add("is-armed");
 
-    var observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (
-            entry.isIntersecting &&
-            entry.intersectionRatio >= 0.35
-          ) {
-            track.classList.add("is-in");
-          } else if (!entry.isIntersecting) {
-            track.classList.remove("is-in");
-          }
-        });
-      },
-      {
-        threshold: [0, 0.35]
-      }
-    );
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
+          track.classList.add("is-in");
+        } else if (!entry.isIntersecting) {
+          track.classList.remove("is-in");
+        }
+      });
+    }, {
+      threshold: [0, 0.35]
+    });
 
     observer.observe(track);
   }
@@ -147,6 +141,7 @@
     return digits.length === 10;
   }
 
+  /* Проверка основной формы «Обсудить ремонт» */
   if (form && statusEl) {
     form.addEventListener("submit", function (event) {
       event.preventDefault();
@@ -156,7 +151,6 @@
       var phone = form.elements.phone.value.trim();
       var machine = form.elements.machine.value.trim();
       var issue = form.elements.issue.value.trim();
-
       var valid = true;
 
       if (!name) {
@@ -194,13 +188,141 @@
       form.reset();
 
       statusEl.textContent =
-        "Демонстрационная заявка сохранена только в браузере. " +
+        "Демонстрационная заявка проверена только в браузере. " +
         "Данные никуда не отправлены: сервер не подключён.";
 
       statusEl.classList.add("is-ok");
     });
   }
 
+  /* Выездной сервис: переключение карточки на форму */
+  function initMasterVisitForm() {
+    var intro = document.getElementById("mobile-service-intro");
+    var masterForm = document.getElementById("master-visit-form");
+    var openButton = document.getElementById("call-master-btn");
+    var cancelButton = document.getElementById("cancel-master-form");
+    var masterStatus = document.getElementById("master-form-status");
+
+    if (!intro || !masterForm || !openButton) return;
+
+    function clearMasterErrors() {
+      masterForm.querySelectorAll(".field").forEach(function (field) {
+        field.classList.remove("is-invalid");
+      });
+
+      masterForm.querySelectorAll(".error").forEach(function (error) {
+        error.hidden = true;
+        error.textContent = "";
+      });
+
+      if (masterStatus) {
+        masterStatus.textContent = "";
+        masterStatus.className = "status";
+      }
+    }
+
+    function setMasterError(name, message) {
+      var input = masterForm.querySelector('[name="' + name + '"]');
+      if (!input) return;
+
+      var field = input.closest(".field");
+      var error = document.getElementById(name + "-error");
+
+      if (field) field.classList.add("is-invalid");
+
+      if (error) {
+        error.hidden = false;
+        error.textContent = message;
+      }
+    }
+
+    openButton.addEventListener("click", function () {
+      intro.hidden = true;
+      masterForm.hidden = false;
+
+      openButton.setAttribute("aria-expanded", "true");
+
+      var firstInput = masterForm.querySelector("input");
+
+      if (firstInput) {
+        firstInput.focus();
+      }
+    });
+
+    if (cancelButton) {
+      cancelButton.addEventListener("click", function () {
+        masterForm.reset();
+        clearMasterErrors();
+
+        masterForm.hidden = true;
+        intro.hidden = false;
+
+        openButton.setAttribute("aria-expanded", "false");
+        openButton.focus();
+      });
+    }
+
+    masterForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      clearMasterErrors();
+
+      var requiredFields = [
+        ["visitName", "Укажите имя."],
+        ["visitPhone", "Укажите телефон."],
+        ["visitMachine", "Укажите тип и модель техники."],
+        ["visitAddress", "Укажите адрес объекта."],
+        ["visitIssue", "Опишите неисправность."]
+      ];
+
+      var valid = true;
+
+      requiredFields.forEach(function (item) {
+        var field = masterForm.elements[item[0]];
+
+        if (!field || !field.value.trim()) {
+          setMasterError(item[0], item[1]);
+          valid = false;
+        }
+      });
+
+      var phone = masterForm.elements.visitPhone.value.trim();
+
+      if (phone && !isPhoneValid(phone)) {
+        setMasterError(
+          "visitPhone",
+          "Проверьте номер телефона: укажите 10 цифр " +
+          "или 11 цифр с +7/8."
+        );
+
+        valid = false;
+      }
+
+      if (!valid) {
+        if (masterStatus) {
+          masterStatus.textContent =
+            "Пожалуйста, заполните обязательные поля.";
+
+          masterStatus.classList.add("is-bad");
+        }
+
+        return;
+      }
+
+      /*
+       * Пока сервер не подключён, форма только проверяет данные.
+       * Заявка не отправляется и не сохраняется вне браузера.
+       */
+      if (masterStatus) {
+        masterStatus.textContent =
+          "Форма заполнена, но отправка пока не подключена. " +
+          "Данные не переданы в сервисный центр.";
+
+        masterStatus.classList.add("is-bad");
+      }
+    });
+  }
+
   loadMedia();
   initDigger();
+  initMasterVisitForm();
 })();
