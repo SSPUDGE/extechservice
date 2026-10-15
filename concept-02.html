@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="concept-02.css?v=3" />
+    <link rel="stylesheet" href="concept-02.css?v=4" />
   </head>
   <body>
     <a class="skip-link" href="#main">Перейти к содержимому</a>
@@ -172,12 +172,91 @@
 
       <section class="block discuss" id="discuss" aria-labelledby="discuss-title">
         <div class="shell discuss-grid">
-          <div>
+          <div class="discuss-copy">
             <h2 id="discuss-title">Обсудить ремонт</h2>
             <p class="lead">
               Опишите технику и неисправность. Форма работает в демонстрационном режиме:
               данные никуда не отправляются, сервер не подключён.
             </p>
+
+            <!-- Декоративный экскаватор: въезжает при прокрутке (см. concept-02.js) -->
+            <div class="dig" aria-hidden="true">
+              <svg
+                class="dig-machine"
+                viewBox="0 0 480 272"
+                xmlns="http://www.w3.org/2000/svg"
+                focusable="false"
+              >
+                <!-- Гусеницы -->
+                <g class="dig-tracks">
+                  <rect class="m-dark" x="104" y="222" width="232" height="48" rx="24" />
+                  <rect
+                    class="dig-tread"
+                    x="107"
+                    y="225"
+                    width="226"
+                    height="42"
+                    rx="21"
+                    fill="none"
+                    stroke="#596068"
+                    stroke-width="5"
+                    stroke-dasharray="7 5"
+                  />
+                  <circle class="m-steel" cx="140" cy="246" r="15" />
+                  <circle class="m-steel" cx="300" cy="246" r="15" />
+                  <circle fill="#8b949c" cx="140" cy="246" r="6" />
+                  <circle fill="#8b949c" cx="300" cy="246" r="6" />
+                  <circle fill="#596068" cx="190" cy="258" r="7" />
+                  <circle fill="#596068" cx="220" cy="258" r="7" />
+                  <circle fill="#596068" cx="250" cy="258" r="7" />
+                  <rect class="m-steel" x="140" y="206" width="160" height="18" rx="3" />
+                  <rect fill="#596068" x="130" y="200" width="180" height="8" />
+                </g>
+
+                <!-- Верхняя часть: корпус, кабина, стрела -->
+                <g class="dig-upper">
+                  <rect class="m-shade" x="104" y="146" width="84" height="62" rx="16" />
+                  <rect class="m-yellow" x="130" y="156" width="176" height="52" rx="6" />
+                  <rect class="m-shade" x="124" y="204" width="184" height="8" />
+                  <path d="M120 164 H172 M120 176 H172 M120 188 H172" stroke="#b97f0c" stroke-width="3" />
+                  <path
+                    class="m-yellow m-outline"
+                    d="M222 160 V122 Q222 112 232 112 H266 Q274 112 278 120 L296 160 Z"
+                  />
+                  <path class="m-glass m-glass-line" d="M230 122 H264 L276 154 H230 Z" />
+                  <path d="M250 122 V154" stroke="#2b2f33" stroke-width="2" />
+
+                  <!-- Стрела -->
+                  <g class="dig-boom">
+                    <path class="m-s-stroke" d="M290 170 L340 104 L392 84" stroke-width="20" />
+                    <path class="m-y-stroke" d="M290 170 L340 104 L392 84" stroke-width="14" />
+                    <path d="M266 160 L326 108" stroke="#2b2f33" stroke-width="7" stroke-linecap="round" />
+                    <path d="M299 131 L326 108" stroke="#b8c0c6" stroke-width="3" stroke-linecap="round" />
+                    <path d="M352 88 L402 106" stroke="#2b2f33" stroke-width="6" stroke-linecap="round" />
+                    <path d="M378 97 L402 106" stroke="#b8c0c6" stroke-width="3" stroke-linecap="round" />
+
+                    <!-- Рукоять -->
+                    <g class="dig-arm">
+                      <path class="m-s-stroke" d="M392 84 L440 232" stroke-width="16" />
+                      <path class="m-y-stroke" d="M392 84 L440 232" stroke-width="10" />
+                      <circle class="m-steel" cx="392" cy="84" r="7" />
+
+                      <!-- Ковш -->
+                      <g class="dig-bucket">
+                        <path
+                          class="m-shade m-outline"
+                          d="M430 226 L466 218 Q474 246 450 262 L426 254 Q422 238 430 226 Z"
+                        />
+                        <path d="M434 232 L462 226" stroke="#f0b429" stroke-width="3" opacity="0.7" />
+                        <circle class="m-steel" cx="440" cy="232" r="6" />
+                      </g>
+                    </g>
+                    <circle class="m-steel" cx="290" cy="170" r="8" />
+                    <circle fill="#8b949c" cx="290" cy="170" r="3" />
+                  </g>
+                </g>
+              </svg>
+            </div>
           </div>
 
           <form id="discuss-form" class="form" novalidate>
@@ -257,6 +336,6 @@
       </div>
     </footer>
 
-    <script src="concept-02.js"></script>
+    <script src="concept-02.js?v=2"></script>
   </body>
 </html>
