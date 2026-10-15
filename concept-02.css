@@ -1312,3 +1312,39 @@ textarea:focus {
     animation-iteration-count: 1 !important;
   }
 }
+```css
+/* Бренды техники под фотографией на главном экране */
+.hero-brands {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  width: 100%;
+  box-sizing: border-box;
+  padding: 18px 8px 8px;
+
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: clamp(16px, 2vw, 23px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink, #20252b);
+}
+
+.hero-brands span {
+  color: var(--accent, #e5a12a);
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+/* На мобильных устройствах */
+@media (max-width: 480px) {
+  .hero-brands {
+    gap: 6px;
+    padding: 14px 0 6px;
+    font-size: clamp(12px, 3.5vw, 16px);
+    letter-spacing: 0.01em;
+  }
+}
+```
