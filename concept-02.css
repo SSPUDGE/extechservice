@@ -11,7 +11,7 @@
   --ok: #1f6b45;
   --focus: #1f4e79;
   --header: 64px;
-  --cell: 32px; /* размер клетки фона: все отступы кратны ему */
+  --cell: 32px;
   --sans: "IBM Plex Sans", "Segoe UI", sans-serif;
   --mono: "IBM Plex Mono", "Consolas", monospace;
 }
@@ -76,7 +76,6 @@ textarea {
 
 .shell {
   width: min(1152px, calc(100% - 48px));
-  /* ширина кратна двум клеткам: края блоков попадают на линии фона */
   width: round(down, min(1152px, calc(100% - 48px)), calc(var(--cell) * 2));
   margin: 0 auto;
 }
@@ -309,7 +308,6 @@ figcaption,
   padding: 64px 0;
 }
 
-/* Единый отступ под всеми заголовками секций */
 .competence h2,
 #workflow h2,
 .discuss h2,
@@ -317,7 +315,7 @@ figcaption,
   margin-bottom: 16px;
 }
 
-/* ===== Направления ремонта: афиша без фото ===== */
+/* Направления ремонта: афиша без фото */
 .poster {
   position: relative;
   background: var(--paper);
@@ -325,7 +323,6 @@ figcaption,
   overflow: hidden;
 }
 
-/* Синяя диагональная полоса слева */
 .poster::before {
   content: "";
   position: absolute;
@@ -337,7 +334,6 @@ figcaption,
   clip-path: polygon(0 0, 100% 0, 55% 100%, 0 100%);
 }
 
-/* Синие вертикальные полоски в правом верхнем углу */
 .poster-stripes {
   position: absolute;
   top: 32px;
@@ -380,7 +376,6 @@ figcaption,
   padding: 0;
 }
 
-/* Список направлений: плашки одной высоты с синей полосой слева */
 .spec-list {
   display: grid;
   grid-auto-rows: 1fr;
@@ -417,8 +412,6 @@ figcaption,
   border-block: 1px solid var(--line);
 }
 
-/* Компетентность: внешняя рамка того же цвета, что и внутренние линии,
-   поэтому слева и справа линии такие же, как между карточками */
 .competence-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -428,7 +421,6 @@ figcaption,
   margin-top: 32px;
 }
 
-/* У каждой карточки синяя «шапка» с заголовком, текст ниже */
 .competence-grid li {
   display: flex;
   flex-direction: column;
@@ -451,7 +443,7 @@ figcaption,
   grid-column: span 2;
 }
 
-/* Порядок работы: карточки одной высоты, заголовки на одной линии */
+/* Порядок работы */
 .flow {
   margin-top: 32px;
   display: grid;
@@ -467,7 +459,7 @@ figcaption,
   padding: calc(var(--cell) - 2px) calc(var(--cell) - 1px) calc(var(--cell) - 1px);
 }
 
-/* ===== «Порядок работы»: катки выглядывают из краёв страницы ===== */
+/* Декоративные катки в блоке «Порядок работы» */
 #workflow {
   position: relative;
   overflow: hidden;
@@ -475,7 +467,7 @@ figcaption,
 
 #workflow .shell {
   position: relative;
-  z-index: 1; /* карточки и заголовок выше катков */
+  z-index: 1;
 }
 
 .roller {
@@ -486,13 +478,11 @@ figcaption,
   pointer-events: none;
 }
 
-/* Справа: фото как есть, чуть больше половины видно, передняя часть с вальцом */
 .roller-right {
   right: 0;
   transform: translateX(38%);
 }
 
-/* Слева: фото отражено, видна та же передняя часть */
 .roller-left {
   left: 0;
   transform: translateX(-38%) scaleX(-1);
@@ -514,17 +504,13 @@ figcaption,
   margin-bottom: 0;
 }
 
-/* ===== Экскаватор в блоке «Обсудить ремонт» ===== */
-/* Обёртка обрезает только правый край (clip-path), слева открыто до края
-   страницы: экскаватор выезжает из левой части экрана. Горизонтальной
-   прокрутки нет, потому что у body стоит overflow-x: hidden. */
+/* Экскаватор в блоке «Обсудить ремонт» */
 .dig {
   margin-top: 32px;
   border-bottom: 2px solid var(--line);
   clip-path: inset(0 0 0 -100vw);
 }
 
-/* scaleX(-1) отражает фото: ковш смотрит вправо */
 .dig-img {
   display: block;
   width: min(100%, 460px);
@@ -533,8 +519,6 @@ figcaption,
   transition: transform 2s cubic-bezier(0.16, 0.84, 0.3, 1);
 }
 
-/* Стартовое положение (за левым краем экрана) включает только скрипт,
-   поэтому без JavaScript картинка просто стоит на месте */
 .dig.is-armed .dig-img {
   transform: translate3d(-100vw, 0, 0) scaleX(-1);
 }
@@ -682,7 +666,7 @@ dd {
   }
 }
 
-/* Афиша «Направления»: на узких экранах полоса слева становится линией сверху */
+/* Направления: адаптация афиши для узких экранов */
 @media (max-width: 900px) {
   .poster::before {
     right: 0;
@@ -761,7 +745,6 @@ dd {
     grid-column: auto;
   }
 
-  /* На телефоне высота карточек определяется их содержимым */
   .flow,
   .spec-list {
     grid-auto-rows: auto;
@@ -792,5 +775,101 @@ dd {
 @media (max-width: 390px) {
   h1 {
     font-size: 2rem;
+  }
+}
+
+/* Новый вводный блок перед «Направлениями ремонта» */
+.intro-block {
+  padding: 24px 0 8px;
+}
+
+.intro-copy {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--blue);
+  padding: 24px 32px;
+}
+
+.intro-copy p {
+  max-width: 92ch;
+  margin: 0;
+  color: var(--muted);
+}
+
+.intro-copy p + p {
+  margin-top: 16px;
+}
+
+/* Раскрывающиеся карточки «Техническая компетентность» */
+.competence-grid > li {
+  min-width: 0;
+}
+
+.competence-details {
+  height: 100%;
+  background: var(--paper);
+}
+
+.competence-details summary {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 64px;
+  padding: 16px calc(var(--cell) - 1px);
+  background: var(--blue);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+
+.competence-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.competence-details summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  font-family: var(--mono);
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.competence-details[open] summary::after {
+  content: "−";
+}
+
+.competence-details summary:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: -4px;
+}
+
+.competence-description {
+  padding: 20px calc(var(--cell) - 1px) calc(var(--cell) - 1px);
+}
+
+.competence-description p {
+  margin: 0;
+  padding: 0;
+  color: var(--muted);
+}
+
+@media (max-width: 760px) {
+  .intro-block {
+    padding: 16px 0 0;
+  }
+
+  .intro-copy {
+    padding: 20px 16px;
+  }
+
+  .competence-details summary {
+    padding: 16px;
+  }
+
+  .competence-description {
+    padding: 16px;
   }
 }
