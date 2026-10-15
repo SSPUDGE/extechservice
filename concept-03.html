@@ -1,355 +1,334 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="ЭксТехСервис — ремонт спецтехники и основных агрегатов в Сыктывкаре."
-    />
-    <title>ЭксТехСервис — ремонт спецтехники</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ЭксТехСервис — ремонт спецтехники и основных агрегатов в Сыктывкаре.">
+  <title>ЭксТехСервис — ремонт спецтехники</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="concept-03.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
+  <header class="site-header" id="top">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">ЭксТехСервис</span>
+      </a>
 
-    <link rel="stylesheet" href="concept-03.css" />
-  </head>
+      <div class="header-info">
+        <div class="header-info-item">
+          <span class="header-info-label">Адрес</span>
+          <span class="header-info-value">Сыктывкар, м. Дырнос, 98</span>
+        </div>
+        <div class="header-info-item">
+          <span class="header-info-label">График работы</span>
+          <span class="header-info-value">Пн–пт, 09:00–18:00</span>
+        </div>
+        <div class="header-info-item">
+          <span class="header-info-label">Выездной сервис</span>
+          <span class="header-info-value">По согласованию</span>
+        </div>
+      </div>
+    </div>
+  </header>
 
-  <body>
-    <a class="skip-link" href="#main">Перейти к содержимому</a>
+  <main id="main">
+    <section class="hero" aria-label="Ремонт спецтехники">
+      <div class="ticker">
+        <div class="ticker-track" aria-hidden="true">
+          <span>Ремонт спецтехники и основных агрегатов</span>
+          <span>Ремонт спецтехники и основных агрегатов</span>
+          <span>Ремонт спецтехники и основных агрегатов</span>
+          <span>Ремонт спецтехники и основных агрегатов</span>
+        </div>
+        <h1 class="visually-hidden">Ремонт спецтехники и основных агрегатов</h1>
+      </div>
 
-    <!-- Шапка сайта -->
-    <header class="site-header" id="top">
-      <div class="wrap header-inner">
-        <a class="brand" href="#top">
-          <span class="brand-mark" aria-hidden="true"></span>
-          <span class="brand-name">ЭксТехСервис</span>
+      <nav class="hero-tabs wrap" aria-label="Основные разделы">
+        <a class="hero-tab" href="#experience">
+          <span class="tab-number">01</span>
+          <span class="tab-title">Опыт и гарантия</span>
+          <span class="tab-arrow" aria-hidden="true">↘</span>
         </a>
+        <a class="hero-tab" href="#base">
+          <span class="tab-number">02</span>
+          <span class="tab-title">Выезд и ремонтная база</span>
+          <span class="tab-arrow" aria-hidden="true">↘</span>
+        </a>
+        <a class="hero-tab hero-tab-accent" href="#pricing" aria-current="location">
+          <span class="tab-number">03</span>
+          <span class="tab-title">Цены и услуги</span>
+          <span class="tab-arrow" aria-hidden="true">↘</span>
+        </a>
+      </nav>
 
-        <div class="header-info">
-          <div class="header-info-item">
-            <span class="header-info-label">Адрес</span>
-            <span class="header-info-value">Сыктывкар, м. Дырнос, 98</span>
-          </div>
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <h2 class="hero-title">Работа без лишнего простоя.</h2>
 
-          <div class="header-info-item">
-            <span class="header-info-label">График работы</span>
-            <span class="header-info-value">Пн–пт, 09:00–18:00</span>
-          </div>
+          <p class="hero-lead">
+            Диагностика, согласование объёма работ и ремонт на собственной базе.
+            Работаем с экскаваторами, погрузчиками, гидравлическими насосами,
+            распределителями, ходовыми редукторами и двигателями.
+          </p>
 
-          <div class="header-info-item">
-            <span class="header-info-label">Выездной сервис</span>
-            <span class="header-info-value">По согласованию</span>
-          </div>
+          <p class="hero-brands" aria-label="Марки техники">
+            <span>HITACHI</span>
+            <span>JCB</span>
+            <span>VOLVO</span>
+            <span>HYUNDAI</span>
+          </p>
         </div>
+
+        <figure class="hero-panel">
+          <span class="panel-label">Service / System</span>
+          <img
+            class="hero-machine"
+            src="concept-02-excavator.png"
+            width="369"
+            height="368"
+            alt="Иллюстрация жёлтого гусеничного экскаватора"
+          >
+          <figcaption>Иллюстрация спецтехники</figcaption>
+        </figure>
       </div>
-    </header>
+    </section>
 
-    <main id="main">
-      <!-- Первый экран -->
-      <section class="hero" aria-label="Ремонт спецтехники">
-        <!-- Бесконечная бегущая строка -->
-        <div class="ticker">
-          <div class="ticker-track" aria-hidden="true">
-            <span>Ремонт спецтехники и основных агрегатов</span>
-            <span>Ремонт спецтехники и основных агрегатов</span>
-            <span>Ремонт спецтехники и основных агрегатов</span>
-            <span>Ремонт спецтехники и основных агрегатов</span>
-          </div>
-          <p class="visually-hidden">
-            Ремонт спецтехники и основных агрегатов
+    <section class="section experience" id="experience" aria-labelledby="experience-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="experience-title">Опыт и гарантия на работы</h2>
+          <p class="section-lead">
+            В ремонте спецтехники важны точная диагностика, понимание причин
+            неисправности и согласованный объём работ.
           </p>
         </div>
 
-        <!-- Навигационные вкладки -->
-        <nav class="hero-tabs wrap" aria-label="Основные разделы">
-          <a class="hero-tab" href="#experience">
-            <span class="tab-number">01</span>
-            <span class="tab-title">Опыт и гарантия</span>
-            <span class="tab-arrow" aria-hidden="true">↘</span>
-          </a>
-
-          <a class="hero-tab" href="#base">
-            <span class="tab-number">02</span>
-            <span class="tab-title">Выезд и ремонтная база</span>
-            <span class="tab-arrow" aria-hidden="true">↘</span>
-          </a>
-
-          <a class="hero-tab" href="#pricing">
-            <span class="tab-number">03</span>
-            <span class="tab-title">Цены и услуги</span>
-            <span class="tab-arrow" aria-hidden="true">↘</span>
-          </a>
-        </nav>
-
-        <!-- Фото расположено после бегущей строки и вкладок -->
-        <div class="wrap hero-grid">
-          <div class="hero-copy">
-            <p class="tag">ЭксТехСервис · Сыктывкар</p>
-
-            <h1>Ремонт техники. Работа без лишнего простоя.</h1>
-
-            <p class="hero-lead">
-              Диагностика, согласование объёма работ и ремонт на собственной
-              базе. Работаем с экскаваторами, погрузчиками, гидравлическими
-              насосами, распределителями, ходовыми редукторами и двигателями.
-            </p>
-
-            <p class="hero-brands">
-              HITACHI <span>·</span> JCB <span>·</span> VOLVO <span>·</span> HYUNDAI
-            </p>
-
-            <div class="hero-actions">
-              <a class="btn btn-accent" href="#pricing">
-                Посмотреть услуги
-              </a>
-              <a class="btn btn-line" href="#request">
-                Запросить расчёт
-              </a>
-            </div>
-          </div>
-
-          <figure class="hero-panel">
-            <span class="panel-label">Service / System</span>
-
-            <img
-              class="hero-machine"
-              src="concept-02-excavator.png"
-              width="369"
-              height="368"
-              alt="Иллюстрация жёлтого гусеничного экскаватора"
-            />
-
-            <figcaption>
-              Иллюстрация спецтехники
-            </figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <!-- Опыт и гарантия -->
-      <section
-        class="section experience"
-        id="experience"
-        aria-labelledby="experience-title"
-      >
-        <div class="wrap">
-          <div class="section-head">
-            <p class="tag">01 / Опыт и гарантия</p>
-            <h2 id="experience-title">Опыт и гарантия на работы</h2>
-            <p class="section-lead">
-              В ремонте спецтехники важны точная диагностика, понимание причин
-              неисправности и согласованный объём работ.
-            </p>
-          </div>
-
-          <div class="feature-grid">
-            <article class="feature-card">
-              <span class="feature-index">01</span>
-              <h3>Опытные специалисты</h3>
-              <p>
-                Работа с техникой и основными агрегатами начинается с
-                диагностики и определения характера неисправности.
-              </p>
-            </article>
-
-            <article class="feature-card">
-              <span class="feature-index">02</span>
-              <h3>Согласование ремонта</h3>
-              <p>
-                Объём работ и дальнейшие действия согласовываются до начала
-                ремонта.
-              </p>
-            </article>
-
-            <article class="feature-card feature-card-dark">
-              <span class="feature-index">03</span>
-              <h3>Гарантия на работы</h3>
-              <p>
-                Условия гарантии на выполненные работы обсуждаются при
-                согласовании заказа.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- Выезд и ремонтная база -->
-      <section
-        class="section base-section"
-        id="base"
-        aria-labelledby="base-title"
-      >
-        <div class="wrap">
-          <div class="section-head">
-            <p class="tag">02 / Выезд и ремонтная база</p>
-            <h2 id="base-title">Ремонтная база в Сыктывкаре</h2>
-            <p class="section-lead">
-              Ремонт выполняется на собственной базе. Возможность выезда
-              обсуждается отдельно с учётом задачи и местоположения техники.
-            </p>
-          </div>
-
-          <div class="base-grid">
-            <div class="base-details">
-              <div class="detail-row">
-                <span class="detail-label">Адрес</span>
-                <p>Сыктывкар, м. Дырнос, 98</p>
-              </div>
-
-              <div class="detail-row">
-                <span class="detail-label">График работы</span>
-                <p>Понедельник — пятница, 09:00–18:00</p>
-              </div>
-
-              <div class="detail-row">
-                <span class="detail-label">Выездной сервис</span>
-                <p>При необходимости, по предварительному согласованию</p>
-              </div>
-
-              <a class="btn btn-accent" href="#request">
-                Обсудить выезд
-              </a>
-            </div>
-
-            <!-- Условная схема, не географическая карта -->
-            <div class="map-placeholder" role="img" aria-label="Условная схема расположения ремонтной базы в Сыктывкаре. Точное положение на карте не указано.">
-              <div class="map-grid-lines" aria-hidden="true"></div>
-              <div class="map-road road-one" aria-hidden="true"></div>
-              <div class="map-road road-two" aria-hidden="true"></div>
-              <div class="map-road road-three" aria-hidden="true"></div>
-
-              <div class="map-pin" aria-hidden="true">
-                <span>Э</span>
-              </div>
-
-              <div class="map-caption">
-                <span class="map-caption-label">Ремонтная база</span>
-                <strong>Сыктывкар, м. Дырнос, 98</strong>
-                <span class="map-caption-note">
-                  Условная схема. Не отображает точные координаты.
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Цены и услуги -->
-      <section
-        class="section services"
-        id="pricing"
-        aria-labelledby="services-title"
-      >
-        <div class="wrap">
-          <div class="section-head">
-            <p class="tag">03 / Цены и услуги</p>
-            <h2 id="services-title">Услуги и основные агрегаты</h2>
-            <p class="section-lead">
-              Стоимость зависит от модели техники, состояния узла и объёма
-              необходимых работ. Предварительный расчёт обсуждается после
-              получения информации о неисправности.
-            </p>
-          </div>
-
-          <ul class="bento">
-            <li class="card card-machines">
-              <p class="tag">Машины</p>
-              <h3>Экскаваторы и погрузчики</h3>
-              <p>
-                Диагностика, устранение неисправностей и подготовка техники
-                к дальнейшей работе.
-              </p>
-              <ul class="chips" aria-label="Что входит">
-                <li>Диагностика</li>
-                <li>Ремонт</li>
-                <li>Обслуживание</li>
-              </ul>
-              <a class="card-link" href="#request">Запросить расчёт</a>
-            </li>
-
-            <li class="card card-hydro">
-              <p class="tag">Гидравлика</p>
-              <h3>Гидравлические насосы и распределители</h3>
-              <p>
-                Проверка узлов, выявление неисправностей и восстановление
-                работоспособности.
-              </p>
-              <a class="card-link" href="#request">Запросить расчёт</a>
-            </li>
-
-            <li class="card card-drive">
-              <p class="tag">Ходовая часть</p>
-              <h3>Ходовые редукторы</h3>
-              <p>
-                Разборка, дефектовка и ремонт узла в согласованном объёме.
-              </p>
-              <a class="card-link" href="#request">Запросить расчёт</a>
-            </li>
-
-            <li class="card card-engine">
-              <p class="tag">Двигатель</p>
-              <h3>Двигатели внутреннего сгорания</h3>
-              <p>
-                Поиск причины неисправности и ремонт основных систем двигателя
-                строительной техники.
-              </p>
-              <a class="card-link" href="#request">Запросить расчёт</a>
-            </li>
-
-            <li class="card card-parts">
-              <p class="tag">Комплектация</p>
-              <h3>Запасные части для спецтехники</h3>
-              <p>
-                Подбор запасных частей для ремонта и обслуживания техники,
-                включая машины Hitachi, JCB, Volvo и Hyundai.
-              </p>
-              <a class="card-link" href="#request">Запросить расчёт</a>
-            </li>
-          </ul>
-
-          <p class="price-note">
-            Фиксированный прайс на сайте не указан: стоимость рассчитывается
-            индивидуально после уточнения задачи.
-          </p>
-        </div>
-      </section>
-
-      <!-- Заявка -->
-      <section class="next" id="request" aria-labelledby="request-title">
-        <div class="wrap request-inner">
-          <div>
-            <p class="tag">Следующий шаг</p>
-            <h2 id="request-title">Нужен расчёт ремонта?</h2>
+        <div class="feature-grid">
+          <article class="feature-card feature-card-dark">
+            <span class="feature-index">01</span>
+            <h3>Опытные специалисты</h3>
             <p>
-              Подготовьте информацию о модели техники, неисправности и
-              необходимом ремонте, чтобы обсудить предварительную оценку.
+              Работа с техникой и основными агрегатами начинается с диагностики
+              и определения характера неисправности.
             </p>
+          </article>
+
+          <article class="feature-card feature-card-dark">
+            <span class="feature-index">02</span>
+            <h3>Согласование ремонта</h3>
+            <p>
+              Объём работ и дальнейшие действия согласовываются до начала ремонта.
+            </p>
+          </article>
+
+          <article class="feature-card feature-card-dark">
+            <span class="feature-index">03</span>
+            <h3>Гарантия на работы</h3>
+            <p>
+              Условия гарантии на выполненные работы обсуждаются при согласовании заказа.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section base-section" id="base" aria-labelledby="base-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="base-title">Ремонтная база в Сыктывкаре</h2>
+          <p class="section-lead">
+            Оставьте контактные данные и опишите задачу. Возможность выезда
+            согласуем с учётом местоположения техники.
+          </p>
+        </div>
+
+        <div class="base-grid">
+          <div class="base-details">
+            <form class="visit-form" id="visit-form">
+              <div class="form-field">
+                <label for="client-name">Ваше имя <span>*</span></label>
+                <input
+                  id="client-name"
+                  name="name"
+                  type="text"
+                  autocomplete="name"
+                  placeholder="Как к вам обращаться"
+                  required
+                >
+              </div>
+
+              <div class="form-field">
+                <label for="client-phone">Номер телефона <span>*</span></label>
+                <input
+                  id="client-phone"
+                  name="phone"
+                  type="tel"
+                  autocomplete="tel"
+                  placeholder="+7 ___ ___-__-__"
+                  required
+                >
+              </div>
+
+              <div class="form-field">
+                <label for="machine-location">Где находится техника?</label>
+                <input
+                  id="machine-location"
+                  name="location"
+                  type="text"
+                  placeholder="Город, адрес или ориентир"
+                >
+              </div>
+
+              <div class="form-field">
+                <label for="visit-time">Когда удобно связаться?</label>
+                <input
+                  id="visit-time"
+                  name="time"
+                  type="text"
+                  placeholder="Например, сегодня после 14:00"
+                >
+              </div>
+
+              <div class="form-field">
+                <label for="visit-task">Что нужно сделать?</label>
+                <textarea
+                  id="visit-task"
+                  name="task"
+                  rows="3"
+                  placeholder="Тип техники, неисправность или задача"
+                ></textarea>
+              </div>
+
+              <button class="btn btn-accent form-submit" type="submit">
+                Обсудить выезд
+              </button>
+
+              <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+              <p class="form-note">
+                Демонстрационная форма: данные пока не отправляются в компанию.
+              </p>
+            </form>
           </div>
 
-          <a class="btn btn-accent" href="#top">
-            Вернуться наверх ↑
-          </a>
-        </div>
-      </section>
-    </main>
+          <div
+            class="map-placeholder"
+            role="img"
+            aria-label="Условная схема ремонтной базы в Сыктывкаре, без точных координат"
+          >
+            <div class="map-grid-lines" aria-hidden="true"></div>
+            <div class="map-road road-one" aria-hidden="true"></div>
+            <div class="map-road road-two" aria-hidden="true"></div>
+            <div class="map-road road-three" aria-hidden="true"></div>
 
-    <!-- Подвал сайта -->
-    <footer class="site-footer">
-      <div class="wrap footer-inner">
-        <p class="footer-brand">
-          ЭксТехСервис · Сыктывкар, м. Дырнос, 98
-        </p>
-        <p class="footer-note">
-          Concept 03: Service / System. Демонстрационный лендинг.
+            <div class="map-pin" aria-hidden="true"><span>Э</span></div>
+
+            <div class="map-caption">
+              <span class="map-caption-label">Ремонтная база</span>
+              <strong>Сыктывкар, м. Дырнос, 98</strong>
+              <span class="map-caption-note">
+                Условная схема. Не отображает точные координаты.
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section services" id="pricing" aria-labelledby="services-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="services-title">Услуги и основные агрегаты</h2>
+          <p class="section-lead">
+            Стоимость зависит от модели техники, состояния узла и объёма
+            необходимых работ. Предварительный расчёт обсуждается после
+            получения информации о неисправности.
+          </p>
+        </div>
+
+        <ul class="bento">
+          <li class="card card-machines">
+            <p class="tag">Машины</p>
+            <h3>Экскаваторы и погрузчики</h3>
+            <p>
+              Диагностика, устранение неисправностей и подготовка техники
+              к дальнейшей работе.
+            </p>
+            <ul class="chips" aria-label="Что входит">
+              <li>Диагностика</li>
+              <li>Ремонт</li>
+              <li>Обслуживание</li>
+            </ul>
+            <a class="card-link" href="#base">Обсудить задачу</a>
+          </li>
+
+          <li class="card card-hydro">
+            <p class="tag">Гидравлика</p>
+            <h3>Гидравлические насосы и распределители</h3>
+            <p>
+              Проверка узлов, выявление неисправностей и восстановление работоспособности.
+            </p>
+            <a class="card-link" href="#base">Обсудить задачу</a>
+          </li>
+
+          <li class="card card-drive">
+            <p class="tag">Ходовая часть</p>
+            <h3>Ходовые редукторы</h3>
+            <p>Разборка, дефектовка и ремонт узла в согласованном объёме.</p>
+            <a class="card-link" href="#base">Обсудить задачу</a>
+          </li>
+
+          <li class="card card-engine">
+            <p class="tag">Двигатель</p>
+            <h3>Двигатели внутреннего сгорания</h3>
+            <p>
+              Поиск причины неисправности и ремонт основных систем двигателя строительной техники.
+            </p>
+            <a class="card-link" href="#base">Обсудить задачу</a>
+          </li>
+
+          <li class="card card-parts">
+            <p class="tag">Комплектация</p>
+            <h3>Запасные части для спецтехники</h3>
+            <p>
+              Подбор запасных частей для ремонта и обслуживания техники,
+              включая машины Hitachi, JCB, Volvo и Hyundai.
+            </p>
+            <a class="card-link" href="#base">Обсудить задачу</a>
+          </li>
+        </ul>
+
+        <p class="price-note">
+          Фиксированный прайс на сайте не указан: стоимость рассчитывается
+          индивидуально после уточнения задачи.
         </p>
       </div>
-    </footer>
+    </section>
 
-    <script src="concept-03.js"></script>
-  </body>
+    <section class="next" id="request" aria-labelledby="request-title">
+      <div class="wrap request-inner">
+        <div>
+          <p class="tag">Следующий шаг</p>
+          <h2 id="request-title">Нужен расчёт ремонта?</h2>
+          <p>Перейдите к форме выше, чтобы оставить контакты и описание задачи.</p>
+        </div>
+        <a class="btn btn-accent" href="#base">Заполнить форму</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <p class="footer-brand">ЭксТехСервис · Сыктывкар, м. Дырнос, 98</p>
+      <p class="footer-note">Concept 03: Service / System. Демонстрационный лендинг.</p>
+    </div>
+  </footer>
+
+  <script src="concept-03.js"></script>
+</body>
 </html>
