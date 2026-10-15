@@ -284,4 +284,59 @@
 
     updateCarousel();
   }
+  
+  /* Анимация экскаватора при прокрутке блока ремонта */
+  var discussSection = document.getElementById("discuss");
+  var excavator = document.querySelector(".discuss-excavator");
+
+  if (discussSection && excavator) {
+    var lastScrollY = window.scrollY;
+    var scrollDirection = "down";
+    var discussIsVisible = false;
+    var animationFramePending = false;
+
+    function updateExcavator() {
+      var currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY) {
+        scrollDirection = "down";
+      } else if (currentScrollY < lastScrollY) {
+        scrollDirection = "up";
+      }
+
+      lastScrollY = currentScrollY;
+
+      if (discussIsVisible && scrollDirection === "down") {
+        excavator.classList.add("is-driving-in");
+      } else {
+        excavator.classList.remove("is-driving-in");
+      }
+
+      animationFramePending = false;
+    }
+
+    window.addEventListener("scroll", function () {
+      if (!animationFramePending) {
+        window.requestAnimationFrame(updateExcavator);
+        animationFramePending = true;
+      }
+    }, { passive: true });
+
+    var discussObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        discussIsVisible = entry.isIntersecting;
+
+        if (!entry.isIntersecting) {
+          excavator.classList.remove("is-driving-in");
+        } else {
+          updateExcavator();
+        }
+      });
+    }, {
+      threshold: 0.15
+    });
+
+    discussObserver.observe(discussSection);
+  }
+
 })();
