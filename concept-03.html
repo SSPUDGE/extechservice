@@ -5,11 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="ЭксТехСервис — ремонт спецтехники и основных агрегатов в Сыктывкаре.">
   <title>ЭксТехСервис — ремонт спецтехники</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="concept-03.css">
 </head>
+
 <body>
   <a class="skip-link" href="#main">Перейти к содержимому</a>
 
@@ -38,6 +40,7 @@
   </header>
 
   <main id="main">
+    <!-- Первый экран -->
     <section class="hero" aria-label="Ремонт спецтехники">
       <div class="ticker">
         <div class="ticker-track" aria-hidden="true">
@@ -49,20 +52,20 @@
         <h1 class="visually-hidden">Ремонт спецтехники и основных агрегатов</h1>
       </div>
 
+      <!-- Цены и услуги теперь по центру -->
       <nav class="hero-tabs wrap" aria-label="Основные разделы">
         <a class="hero-tab" href="#experience">
-          <span class="tab-number">01</span>
-          <span class="tab-title">Опыт и гарантия</span>
+          <span class="tab-title">О компании</span>
           <span class="tab-arrow" aria-hidden="true">↘</span>
         </a>
-        <a class="hero-tab" href="#base">
-          <span class="tab-number">02</span>
-          <span class="tab-title">Выезд и ремонтная база</span>
-          <span class="tab-arrow" aria-hidden="true">↘</span>
-        </a>
-        <a class="hero-tab hero-tab-accent" href="#pricing" aria-current="location">
-          <span class="tab-number">03</span>
+
+        <a class="hero-tab hero-tab-accent" href="#pricing">
           <span class="tab-title">Цены и услуги</span>
+          <span class="tab-arrow" aria-hidden="true">↘</span>
+        </a>
+
+        <a class="hero-tab" href="#base">
+          <span class="tab-title">Выезд и ремонтная база</span>
           <span class="tab-arrow" aria-hidden="true">↘</span>
         </a>
       </nav>
@@ -77,169 +80,146 @@
             распределителями, ходовыми редукторами и двигателями.
           </p>
 
-          <p class="hero-brands" aria-label="Марки техники">
+          <div class="hero-brands" aria-label="Марки техники">
             <span>HITACHI</span>
+            <i class="brand-separator" aria-hidden="true"></i>
             <span>JCB</span>
+            <i class="brand-separator" aria-hidden="true"></i>
             <span>VOLVO</span>
+            <i class="brand-separator" aria-hidden="true"></i>
             <span>HYUNDAI</span>
-          </p>
+          </div>
         </div>
 
-        <figure class="hero-panel">
+        <!-- Автоматическая фотогалерея и видео -->
+        <figure class="hero-panel hero-media" aria-label="Фото и видео процесса ремонта">
           <span class="panel-label">Service / System</span>
-          <img
-            class="hero-machine"
-            src="concept-02-excavator.png"
-            width="369"
-            height="368"
-            alt="Иллюстрация жёлтого гусеничного экскаватора"
-          >
-          <figcaption>Иллюстрация спецтехники</figcaption>
+
+          <div class="media-slides" id="media-slides">
+            <div class="media-slide is-active">
+              <img
+                src="concept-02-excavator.png"
+                alt="Иллюстрация жёлтого гусеничного экскаватора"
+                class="media-visual"
+              >
+              <p class="media-caption">Спецтехника</p>
+            </div>
+
+            <div class="media-slide">
+              <img
+                src="workshop-01.jpg"
+                alt="Рабочий процесс в ремонтной мастерской"
+                class="media-visual"
+                loading="lazy"
+              >
+              <p class="media-caption">Работа в мастерской</p>
+            </div>
+
+            <div class="media-slide">
+              <video
+                class="media-visual"
+                muted
+                playsinline
+                loop
+                preload="metadata"
+                aria-label="Видео процесса ремонта"
+              >
+                <source src="work-process.mp4" type="video/mp4">
+              </video>
+              <p class="media-caption">Процесс ремонта</p>
+            </div>
+
+            <div class="media-controls">
+              <button type="button" class="media-control" id="media-prev" aria-label="Предыдущий кадр">←</button>
+              <span class="media-counter" id="media-counter" aria-live="polite">01 / 03</span>
+              <button type="button" class="media-control" id="media-next" aria-label="Следующий кадр">→</button>
+            </div>
+          </div>
         </figure>
       </div>
     </section>
 
+    <!-- О компании: раскрывающиеся блоки -->
     <section class="section experience" id="experience" aria-labelledby="experience-title">
       <div class="wrap">
         <div class="section-head">
-          <h2 id="experience-title">Опыт и гарантия на работы</h2>
+          <h2 id="experience-title">О компании и работе с клиентами</h2>
           <p class="section-lead">
-            В ремонте спецтехники важны точная диагностика, понимание причин
-            неисправности и согласованный объём работ.
+            Информация о компании, партнёрах, вакансиях, документах и отзывах.
+            Откройте нужный раздел, чтобы перейти к подробностям.
           </p>
         </div>
 
-        <div class="feature-grid">
-          <article class="feature-card feature-card-dark">
-            <span class="feature-index">01</span>
-            <h3>Опытные специалисты</h3>
-            <p>
-              Работа с техникой и основными агрегатами начинается с диагностики
-              и определения характера неисправности.
-            </p>
-          </article>
-
-          <article class="feature-card feature-card-dark">
-            <span class="feature-index">02</span>
-            <h3>Согласование ремонта</h3>
-            <p>
-              Объём работ и дальнейшие действия согласовываются до начала ремонта.
-            </p>
-          </article>
-
-          <article class="feature-card feature-card-dark">
-            <span class="feature-index">03</span>
-            <h3>Гарантия на работы</h3>
-            <p>
-              Условия гарантии на выполненные работы обсуждаются при согласовании заказа.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section base-section" id="base" aria-labelledby="base-title">
-      <div class="wrap">
-        <div class="section-head">
-          <h2 id="base-title">Ремонтная база в Сыктывкаре</h2>
-          <p class="section-lead">
-            Оставьте контактные данные и опишите задачу. Возможность выезда
-            согласуем с учётом местоположения техники.
-          </p>
-        </div>
-
-        <div class="base-grid">
-          <div class="base-details">
-            <form class="visit-form" id="visit-form">
-              <div class="form-field">
-                <label for="client-name">Ваше имя <span>*</span></label>
-                <input
-                  id="client-name"
-                  name="name"
-                  type="text"
-                  autocomplete="name"
-                  placeholder="Как к вам обращаться"
-                  required
-                >
-              </div>
-
-              <div class="form-field">
-                <label for="client-phone">Номер телефона <span>*</span></label>
-                <input
-                  id="client-phone"
-                  name="phone"
-                  type="tel"
-                  autocomplete="tel"
-                  placeholder="+7 ___ ___-__-__"
-                  required
-                >
-              </div>
-
-              <div class="form-field">
-                <label for="machine-location">Где находится техника?</label>
-                <input
-                  id="machine-location"
-                  name="location"
-                  type="text"
-                  placeholder="Город, адрес или ориентир"
-                >
-              </div>
-
-              <div class="form-field">
-                <label for="visit-time">Когда удобно связаться?</label>
-                <input
-                  id="visit-time"
-                  name="time"
-                  type="text"
-                  placeholder="Например, сегодня после 14:00"
-                >
-              </div>
-
-              <div class="form-field">
-                <label for="visit-task">Что нужно сделать?</label>
-                <textarea
-                  id="visit-task"
-                  name="task"
-                  rows="3"
-                  placeholder="Тип техники, неисправность или задача"
-                ></textarea>
-              </div>
-
-              <button class="btn btn-accent form-submit" type="submit">
-                Обсудить выезд
-              </button>
-
-              <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
-              <p class="form-note">
-                Демонстрационная форма: данные пока не отправляются в компанию.
-              </p>
-            </form>
-          </div>
-
-          <div
-            class="map-placeholder"
-            role="img"
-            aria-label="Условная схема ремонтной базы в Сыктывкаре, без точных координат"
-          >
-            <div class="map-grid-lines" aria-hidden="true"></div>
-            <div class="map-road road-one" aria-hidden="true"></div>
-            <div class="map-road road-two" aria-hidden="true"></div>
-            <div class="map-road road-three" aria-hidden="true"></div>
-
-            <div class="map-pin" aria-hidden="true"><span>Э</span></div>
-
-            <div class="map-caption">
-              <span class="map-caption-label">Ремонтная база</span>
-              <strong>Сыктывкар, м. Дырнос, 98</strong>
-              <span class="map-caption-note">
-                Условная схема. Не отображает точные координаты.
-              </span>
+        <div class="company-accordion">
+          <details class="company-item">
+            <summary>
+              <span>О компании</span>
+              <span class="accordion-symbol" aria-hidden="true"></span>
+            </summary>
+            <div class="company-item-content">
+              <p>Подробнее о компании и её деятельности.</p>
+              <a href="https://lpskomi.ru/company/index.php" target="_blank" rel="noopener noreferrer">
+                Открыть раздел «О компании» ↗
+              </a>
             </div>
-          </div>
+          </details>
+
+          <details class="company-item">
+            <summary>
+              <span>Партнёры</span>
+              <span class="accordion-symbol" aria-hidden="true"></span>
+            </summary>
+            <div class="company-item-content">
+              <p>Информация о партнёрах размещена на отдельной странице.</p>
+              <a href="https://lpskomi.ru/company/partners/" target="_blank" rel="noopener noreferrer">
+                Открыть раздел «Партнёры» ↗
+              </a>
+            </div>
+          </details>
+
+          <details class="company-item">
+            <summary>
+              <span>Вакансии</span>
+              <span class="accordion-symbol" aria-hidden="true"></span>
+            </summary>
+            <div class="company-item-content">
+              <p>Посмотрите информацию о вакансиях.</p>
+              <a href="https://lpskomi.ru/company/vacancy/" target="_blank" rel="noopener noreferrer">
+                Открыть раздел «Вакансии» ↗
+              </a>
+            </div>
+          </details>
+
+          <details class="company-item">
+            <summary>
+              <span>Сертификаты</span>
+              <span class="accordion-symbol" aria-hidden="true"></span>
+            </summary>
+            <div class="company-item-content">
+              <p>Перейдите к странице с информацией о сертификатах и документах.</p>
+              <a href="https://lpskomi.ru/company/licenses/" target="_blank" rel="noopener noreferrer">
+                Открыть раздел «Сертификаты» ↗
+              </a>
+            </div>
+          </details>
+
+          <details class="company-item">
+            <summary>
+              <span>Отзывы</span>
+              <span class="accordion-symbol" aria-hidden="true"></span>
+            </summary>
+            <div class="company-item-content">
+              <p>Ознакомьтесь с отзывами на указанном сайте.</p>
+              <a href="https://lpskomi.ru/company/reviews/" target="_blank" rel="noopener noreferrer">
+                Открыть раздел «Отзывы» ↗
+              </a>
+            </div>
+          </details>
         </div>
       </div>
     </section>
 
+    <!-- Цены и услуги теперь выше ремонтной базы -->
     <section class="section services" id="pricing" aria-labelledby="services-title">
       <div class="wrap">
         <div class="section-head">
@@ -307,6 +287,70 @@
           Фиксированный прайс на сайте не указан: стоимость рассчитывается
           индивидуально после уточнения задачи.
         </p>
+      </div>
+    </section>
+
+    <!-- Ремонтная база теперь после услуг -->
+    <section class="section base-section" id="base" aria-labelledby="base-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="base-title">Ремонтная база в Сыктывкаре</h2>
+          <p class="section-lead">
+            Оставьте контактные данные и опишите задачу. Возможность выезда
+            согласуем с учётом местоположения техники.
+          </p>
+        </div>
+
+        <div class="base-grid">
+          <div class="base-details">
+            <form class="visit-form" id="visit-form">
+              <div class="form-field">
+                <label for="client-name">Ваше имя <span>*</span></label>
+                <input id="client-name" name="name" type="text" autocomplete="name" placeholder="Как к вам обращаться" required>
+              </div>
+
+              <div class="form-field">
+                <label for="client-phone">Номер телефона <span>*</span></label>
+                <input id="client-phone" name="phone" type="tel" autocomplete="tel" placeholder="+7 ___ ___-__-__" required>
+              </div>
+
+              <div class="form-field">
+                <label for="machine-location">Где находится техника?</label>
+                <input id="machine-location" name="location" type="text" placeholder="Город, адрес или ориентир">
+              </div>
+
+              <div class="form-field">
+                <label for="visit-time">Когда удобно связаться?</label>
+                <input id="visit-time" name="time" type="text" placeholder="Например, сегодня после 14:00">
+              </div>
+
+              <div class="form-field">
+                <label for="visit-task">Что нужно сделать?</label>
+                <textarea id="visit-task" name="task" rows="3" placeholder="Тип техники, неисправность или задача"></textarea>
+              </div>
+
+              <button class="btn btn-accent form-submit" type="submit">Обсудить выезд</button>
+
+              <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+              <p class="form-note">
+                Демонстрационная форма: данные пока не отправляются в компанию.
+              </p>
+            </form>
+          </div>
+
+          <div class="map-placeholder" role="img" aria-label="Условная схема ремонтной базы в Сыктывкаре, без точных координат">
+            <div class="map-grid-lines" aria-hidden="true"></div>
+            <div class="map-road road-one" aria-hidden="true"></div>
+            <div class="map-road road-two" aria-hidden="true"></div>
+            <div class="map-road road-three" aria-hidden="true"></div>
+            <div class="map-pin" aria-hidden="true"><span>Э</span></div>
+            <div class="map-caption">
+              <span class="map-caption-label">Ремонтная база</span>
+              <strong>Сыктывкар, м. Дырнос, 98</strong>
+              <span class="map-caption-note">Условная схема. Не отображает точные координаты.</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
