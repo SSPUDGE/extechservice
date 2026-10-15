@@ -428,9 +428,23 @@ figcaption,
   margin-top: 32px;
 }
 
+/* У каждой карточки синяя «шапка» с заголовком, текст ниже */
 .competence-grid li {
+  display: flex;
+  flex-direction: column;
   background: var(--paper);
-  padding: calc(var(--cell) - 1px);
+  padding: 0;
+}
+
+.competence-grid h3 {
+  margin: 0;
+  padding: 16px calc(var(--cell) - 1px);
+  background: var(--blue);
+  color: #fff;
+}
+
+.competence-grid p {
+  padding: 24px calc(var(--cell) - 1px) calc(var(--cell) - 1px);
 }
 
 .competence-grid .span-wide {
