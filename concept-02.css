@@ -7,7 +7,6 @@
   --blue: #1f4e79;
   --blue-deep: #163a5c;
   --steel: #6d7883;
-  --accent: #f0b429;
   --danger: #9c2f2f;
   --ok: #1f6b45;
   --focus: #1f4e79;
@@ -313,7 +312,7 @@ figcaption,
   overflow: hidden;
 }
 
-/* Жёлтая диагональная полоса слева */
+/* Синяя диагональная полоса слева */
 .poster::before {
   content: "";
   position: absolute;
@@ -321,11 +320,11 @@ figcaption,
   bottom: 0;
   left: 0;
   width: 120px;
-  background: var(--accent);
+  background: var(--blue);
   clip-path: polygon(0 0, 100% 0, 55% 100%, 0 100%);
 }
 
-/* Жёлтые вертикальные полоски в правом верхнем углу */
+/* Синие вертикальные полоски в правом верхнем углу */
 .poster-stripes {
   position: absolute;
   top: 28px;
@@ -334,7 +333,7 @@ figcaption,
   height: 28px;
   background: repeating-linear-gradient(
     90deg,
-    var(--accent) 0 8px,
+    var(--blue) 0 8px,
     transparent 8px 16px
   );
 }
@@ -368,7 +367,7 @@ figcaption,
   padding: 0;
 }
 
-/* Список направлений: плашки одной высоты с жёлтой полосой слева */
+/* Список направлений: плашки одной высоты с синей полосой слева */
 .spec-list {
   display: grid;
   grid-auto-rows: 1fr;
@@ -381,7 +380,7 @@ figcaption,
   justify-content: flex-start;
   padding: 14px 18px;
   background: #f6f8fa;
-  border-left: 4px solid var(--accent);
+  border-left: 4px solid var(--blue);
 }
 
 .spec-list h3,
