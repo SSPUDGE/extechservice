@@ -766,3 +766,90 @@ textarea:focus-visible,
     width: 100%;
   }
 }
+
+/* Шапка: пункты меню в одну строку */
+@media (min-width: 1281px) {
+  .header-inner {
+    flex-wrap: nowrap;
+    gap: 12px;
+  }
+
+  .logo {
+    flex-shrink: 0;
+    white-space: nowrap;
+    font-size: 1.35rem;
+  }
+
+  .site-nav {
+    flex: 1;
+    min-width: 0;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+
+  .site-nav ul {
+    flex-wrap: nowrap;
+    gap: clamp(7px, 0.7vw, 12px);
+  }
+
+  .site-nav ul li,
+  .site-nav ul a {
+    white-space: nowrap;
+  }
+
+  .site-nav ul a {
+    font-size: 0.78rem;
+  }
+
+  .site-nav .header-cta {
+    flex-shrink: 0;
+    padding-left: 12px;
+    padding-right: 12px;
+    white-space: nowrap;
+    font-size: 0.85rem;
+  }
+}
+
+/* На экранах до 1280 px используем компактное меню */
+@media (min-width: 761px) and (max-width: 1280px) {
+  .header-inner {
+    position: relative;
+  }
+
+  .nav-toggle {
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  .site-nav {
+    display: none;
+    position: absolute;
+    top: var(--header-h);
+    left: 0;
+    right: 0;
+    background: #14171a;
+    border-bottom: 1px solid var(--line);
+    padding: 20px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .site-nav.is-open {
+    display: flex;
+  }
+
+  .site-nav ul {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .site-nav ul a {
+    white-space: nowrap;
+  }
+
+  .site-nav .header-cta {
+    width: 100%;
+  }
+}
