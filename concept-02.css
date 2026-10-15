@@ -1295,3 +1295,52 @@ body::before {
     background-position: 16px 0, 16px 0;
   }
 }
+
+/* ==================================================
+   ЕДИНАЯ СЕТКА ФОНА
+   Непрерывные клетки одинакового размера по всей странице
+   ================================================== */
+
+body {
+  position: static;
+  isolation: auto;
+
+  background-color: var(--bg);
+
+  background-image:
+    linear-gradient(
+      to bottom,
+      rgba(31, 78, 121, 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to right,
+      rgba(31, 78, 121, 0.05) 1px,
+      transparent 1px
+    );
+
+  background-size: var(--cell) var(--cell);
+
+  /* Привязка сетки к левому краю основного контейнера */
+  background-position:
+    calc((100vw - min(1152px, 100vw - 48px)) / 2) 0,
+    calc((100vw - min(1152px, 100vw - 48px)) / 2) 0;
+
+  background-repeat: repeat;
+}
+
+/* Отключаем предыдущие варианты псевдоэлемента */
+body::before {
+  content: none !important;
+}
+
+/* Мобильная сетка */
+@media (max-width: 760px) {
+  :root {
+    --cell: 16px;
+  }
+
+  body {
+    background-position: 16px 0, 16px 0;
+  }
+}
