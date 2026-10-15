@@ -1279,3 +1279,19 @@ body::before {
     width: calc(100% - 32px);
   }
 }
+
+/* Сетка продолжается по всей ширине экрана */
+body::before {
+  width: 100%;
+  left: 0;
+  transform: none;
+  background-position:
+    calc((100vw - min(1152px, 100vw - 48px)) / 2) 0,
+    calc((100vw - min(1152px, 100vw - 48px)) / 2) 0;
+}
+
+@media (max-width: 760px) {
+  body::before {
+    background-position: 16px 0, 16px 0;
+  }
+}
