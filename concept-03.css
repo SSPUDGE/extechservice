@@ -1207,3 +1207,181 @@ h3 {
     animation-iteration-count: 1 !important;
   }
 }
+
+/* ===== Новые правки Concept 03 ===== */
+
+/* Вкладка «Цены и услуги» всегда выделена оранжевым */
+.hero-tab-accent {
+  background: var(--accent);
+  color: var(--ink);
+  border-color: var(--accent);
+}
+
+.hero-tab-accent .tab-number {
+  color: rgba(23, 25, 28, 0.7);
+}
+
+.hero-tab-accent:hover,
+.hero-tab-accent:focus-visible {
+  background: var(--accent-strong);
+}
+
+/* Заголовок первого экрана */
+.hero-title {
+  max-width: 15ch;
+  margin: 0;
+  font-size: clamp(2.6rem, 5.4vw, 5rem);
+  text-transform: uppercase;
+}
+
+/* Оранжевое увеличенное описание */
+.hero-lead {
+  color: var(--accent);
+  font-size: clamp(1.12rem, 1.7vw, 1.38rem);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* Больше расстояния между названиями марок */
+.hero-brands {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  margin: 0 0 30px;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.hero-brands span {
+  display: inline-block;
+}
+
+/* Заголовки секций без дополнительных надписей */
+.section-head h2 {
+  white-space: nowrap;
+}
+
+/* Все три карточки опыта — тёмные */
+.feature-card,
+.feature-card-dark {
+  background: var(--graphite);
+  color: var(--white);
+}
+
+.feature-card p,
+.feature-card-dark p {
+  color: var(--muted-light);
+}
+
+/* Форма обсуждения выезда */
+.base-details {
+  min-width: 0;
+}
+
+.visit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.form-field label {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.form-field label span {
+  color: var(--accent);
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  min-width: 0;
+  padding: 13px 14px;
+  border: 1px solid #b9b7b0;
+  border-radius: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+}
+
+.form-field textarea {
+  resize: vertical;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-color: var(--accent);
+}
+
+.form-submit {
+  width: 100%;
+  margin-top: 2px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.form-message {
+  display: none;
+  margin: 0;
+  padding: 13px 15px;
+  border-left: 4px solid var(--accent);
+  background: var(--graphite);
+  color: var(--white);
+  font-weight: 700;
+}
+
+.form-message.is-visible {
+  display: block;
+}
+
+.form-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+/* Адаптация под планшеты и телефоны */
+@media (max-width: 1000px) {
+  .section-head h2 {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero-title {
+    font-size: clamp(2.35rem, 10vw, 3.4rem);
+  }
+
+  .hero-lead {
+    font-size: 1.1rem;
+  }
+
+  .hero-brands {
+    gap: 12px 22px;
+    font-size: 0.85rem;
+  }
+
+  .section-head h2 {
+    white-space: normal;
+    font-size: clamp(1.9rem, 8vw, 2.8rem);
+  }
+}
+
+@media (max-width: 390px) {
+  .hero-title {
+    font-size: 2.25rem;
+  }
+}
