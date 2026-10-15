@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="ru">
   <head>
@@ -53,4 +53,205 @@
         </nav>
       </div>
 
-     
+      <!-- Адрес, график и информация о выезде -->
+      <div class="header-info">
+        <div class="wrap header-info-grid">
+          <div class="header-info-item">
+            <span class="header-info-label">Адрес</span>
+            <span class="header-info-value">
+              Сыктывкар, м. Дырнос, 98
+            </span>
+          </div>
+
+          <div class="header-info-item">
+            <span class="header-info-label">График работы</span>
+            <span class="header-info-value">Пн–пт, 09:00–18:00</span>
+          </div>
+
+          <div class="header-info-item">
+            <span class="header-info-label">Выездной сервис</span>
+            <span class="header-info-value">
+              При необходимости, по согласованию
+            </span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- Первый экран -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="wrap hero-grid">
+          <div class="hero-copy">
+            <p class="tag">Сыктывкар · ремонт спецтехники</p>
+
+            <h1 id="hero-title">
+              Ремонт спецтехники и основных агрегатов
+            </h1>
+
+            <p class="hero-lead">
+              Диагностика, согласование объёма работ и ремонт на собственной
+              базе. Работаем с экскаваторами, погрузчиками и узлами Hitachi,
+              JCB, Volvo и Hyundai — без статуса официального дилера этих марок.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn btn-accent" href="#request">
+                Запросить расчёт
+              </a>
+
+              <a class="btn btn-line" href="#request">
+                Заказать звонок
+              </a>
+            </div>
+          </div>
+
+          <figure class="hero-panel">
+            <span class="panel-label">Service / System</span>
+
+            <img
+              class="hero-machine"
+              src="concept-02-excavator.png"
+              width="369"
+              height="368"
+              alt="Жёлтый гусеничный экскаватор"
+            />
+
+            <figcaption>
+              Изображение техники. Не фотография ремонтной базы «ЭксТехСервис».
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Каталог услуг -->
+      <section
+        class="section services"
+        id="services"
+        aria-labelledby="services-title"
+      >
+        <div class="wrap">
+          <header class="section-head">
+            <p class="tag">Каталог услуг</p>
+
+            <h2 id="services-title">Услуги и агрегаты</h2>
+
+            <p class="section-lead">
+              Восстанавливаем машины и узлы, от которых зависит простой на
+              объекте. Объём работ фиксируется после осмотра и согласовывается
+              до начала ремонта.
+            </p>
+          </header>
+
+          <ul class="bento">
+            <li class="card card-machines">
+              <p class="tag">Машины</p>
+
+              <h3>Экскаваторы и погрузчики</h3>
+
+              <p>
+                Ремонт и плановое обслуживание: диагностика, устранение
+                неисправностей и подготовка техники к дальнейшей работе.
+                На собственной базе и с выездом.
+              </p>
+
+              <ul class="chips" aria-label="Что входит">
+                <li>Диагностика</li>
+                <li>Устранение неисправностей</li>
+                <li>Подготовка к работе</li>
+              </ul>
+
+              <a class="card-link" href="#request">Запросить расчёт</a>
+            </li>
+
+            <li class="card card-hydro">
+              <p class="tag">Гидравлика</p>
+
+              <h3>Гидравлические насосы и распределители</h3>
+
+              <p>
+                Проверка узлов, восстановление работоспособности и контроль
+                после сборки.
+              </p>
+
+              <a class="card-link" href="#request">Запросить расчёт</a>
+            </li>
+
+            <li class="card card-drive">
+              <p class="tag">Ходовая часть</p>
+
+              <h3>Ходовые редукторы</h3>
+
+              <p>
+                Разборка, дефектовка и восстановление узла под согласованный
+                объём работ.
+              </p>
+
+              <a class="card-link" href="#request">Запросить расчёт</a>
+            </li>
+
+            <li class="card card-engine">
+              <p class="tag">Двигатель</p>
+
+              <h3>Двигатели внутреннего сгорания</h3>
+
+              <p>
+                Поиск причины отказа, ремонт и проверка основных систем
+                двигателя строительной техники.
+              </p>
+
+              <a class="card-link" href="#request">Запросить расчёт</a>
+            </li>
+
+            <li class="card card-parts">
+              <p class="tag">Комплектация</p>
+
+              <h3>Запасные части для спецтехники</h3>
+
+              <p>
+                Подбор и поставка запасных частей для ремонта и обслуживания
+                тяжёлой техники, включая узлы для Hitachi, JCB, Volvo и Hyundai.
+              </p>
+
+              <a class="card-link" href="#request">Запросить расчёт</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Временная заглушка -->
+      <section
+        class="next"
+        id="request"
+        aria-labelledby="next-title"
+      >
+        <div class="wrap">
+          <p class="tag">В разработке</p>
+
+          <h2 id="next-title">
+            Форма расчёта, преимущества и контакты
+          </h2>
+
+          <p>
+            Эти блоки будут добавлены на следующем этапе Concept 03.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <p class="footer-brand">
+          ЭксТехСервис · Сыктывкар, м. Дырнос, 98
+        </p>
+
+        <p class="footer-note">
+          Concept 03: Service / System. Демонстрационный лендинг.
+        </p>
+      </div>
+    </footer>
+
+    <script src="concept-03.js"></script>
+  </body>
+</html>
