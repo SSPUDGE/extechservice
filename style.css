@@ -392,7 +392,19 @@ h3 {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(10, 14, 18, 0.45);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(16, 18, 20, 0.68) 0%,
+      rgba(16, 18, 20, 0.82) 55%,
+      rgba(16, 18, 20, 0.94) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(16, 18, 20, 0.45) 0%,
+      rgba(16, 18, 20, 0.12) 65%,
+      rgba(16, 18, 20, 0.3) 100%
+    );
   z-index: -1;
   pointer-events: none;
 }
