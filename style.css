@@ -372,41 +372,29 @@ h3 {
 
 .advantages {
   position: relative;
-  isolation: isolate;
   overflow: hidden;
-  background-color: var(--bg-elevated);
-}
-
-.advantages::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("./hero-rem1.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: -2;
-}
-
-.advantages::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
+  background-color: #101214;
+  background-image:
     linear-gradient(
       180deg,
-      rgba(16, 18, 20, 0.68) 0%,
-      rgba(16, 18, 20, 0.82) 55%,
-      rgba(16, 18, 20, 0.94) 100%
+      rgba(16, 18, 20, 0.45) 0%,
+      rgba(16, 18, 20, 0.78) 48%,
+      #101214 100%
     ),
     linear-gradient(
       90deg,
-      rgba(16, 18, 20, 0.45) 0%,
-      rgba(16, 18, 20, 0.12) 65%,
-      rgba(16, 18, 20, 0.3) 100%
-    );
-  z-index: -1;
-  pointer-events: none;
+      rgba(16, 18, 20, 0.55),
+      transparent 55%
+    ),
+    url("./hero-rem1.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.advantages > .container {
+  position: relative;
+  z-index: 1;
 }
 
 .advantages > .container {
