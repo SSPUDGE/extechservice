@@ -54,6 +54,85 @@
     });
   });
 
+  /* ===== Экскаватор в блоке «Обсудить ремонт» =====
+     Положение экскаватора зависит от того, где блок находится на экране:
+     1) блок поднимается снизу: экскаватор въезжает с левого края экрана;
+     2) блок в середине экрана: экскаватор стоит под описанием;
+     3) блок уходит вверх: экскаватор уезжает вправо за край колонки.
+     При прокрутке назад всё происходит в обратном порядке. */
+  function initDigger() {
+    var track = document.querySelector(".dig");
+    var machine = track ? track.querySelector(".dig-machine") : null;
+    if (!track || !machine) return;
+
+    // Если у человека включено «уменьшить движение», экскаватор просто стоит
+    if (
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
+
+    var ticking = false;
+    var idleTimer = null;
+    var lastX = null;
+
+    function clamp(value, min, max) {
+      return Math.min(max, Math.max(min, value));
+    }
+
+    function easeOut(t) {
+      return 1 - Math.pow(1 - t, 3);
+    }
+
+    function easeIn(t) {
+      return t * t * t;
+    }
+
+    function update() {
+      ticking = false;
+
+      var rect = track.getBoundingClientRect();
+      var viewport = window.innerHeight || document.documentElement.clientHeight;
+
+      // 0 — центр блока у верхнего края экрана, 1 — у нижнего
+      var pos = (rect.top + rect.height / 2) / viewport;
+
+      // Въезд: пока pos идёт от 1.00 до 0.72
+      var enter = easeOut(clamp((1 - pos) / 0.28, 0, 1));
+      // Стоит: pos от 0.72 до 0.32
+      // Отъезд: pos от 0.32 до 0.08
+      var exit = easeIn(clamp((0.32 - pos) / 0.24, 0, 1));
+
+      var width = machine.offsetWidth;
+      var x =
+        -(1 - enter) * (rect.left + width + 10) + exit * track.offsetWidth;
+
+      machine.style.transform = "translate3d(" + x.toFixed(1) + "px, 0, 0)";
+
+      // Пока экскаватор едет, крутятся гусеницы
+      if (lastX !== null && Math.abs(x - lastX) > 0.3) {
+        machine.classList.add("is-moving");
+        machine.classList.toggle("is-reverse", x < lastX);
+        clearTimeout(idleTimer);
+        idleTimer = setTimeout(function () {
+          machine.classList.remove("is-moving");
+        }, 180);
+      }
+      lastX = x;
+    }
+
+    function requestUpdate() {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(update);
+    }
+
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+    update();
+  }
+
   function setError(name, message) {
     var input = form.querySelector('[name="' + name + '"]');
     var field = input.closest(".field");
@@ -124,4 +203,5 @@
   });
 
   loadMedia();
+  initDigger();
 })();
