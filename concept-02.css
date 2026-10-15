@@ -1,128 +1,796 @@
+:root {
+  --paper: #ffffff;
+  --bg: #eef1f4;
+  --ink: #1c232b;
+  --muted: #5a6570;
+  --line: #cfd6dd;
+  --blue: #1f4e79;
+  --blue-deep: #163a5c;
+  --steel: #6d7883;
+  --danger: #9c2f2f;
+  --ok: #1f6b45;
+  --focus: #1f4e79;
+  --header: 64px;
+  --cell: 32px; /* размер клетки фона: все отступы кратны ему */
+  --sans: "IBM Plex Sans", "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", "Consolas", monospace;
 }
 
-.intro-note-copy p {
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
   margin: 0;
-  color: var(--muted);
-  line-height: 1.75;
+  overflow-x: hidden;
 }
 
-.intro-note-copy p + p {
-  margin-top: 14px;
+body {
+  font-family: var(--sans);
+  color: var(--ink);
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(rgba(31, 78, 121, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(31, 78, 121, 0.05) 1px, transparent 1px);
+  background-size: var(--cell) var(--cell);
+  background-position: calc(50% + var(--cell) / 2) 0;
+  line-height: 1.55;
+  min-width: 320px;
 }
 
-/* Раскрывающиеся пункты технической компетентности */
-.competence-hint {
-  margin: -3px 0 24px;
-  color: var(--muted);
+img {
+  max-width: 100%;
+  display: block;
 }
 
-.competence-accordion {
-  border-top: 1px solid var(--line);
+a {
+  color: inherit;
 }
 
-.competence-item {
-  border-bottom: 1px solid var(--line);
-  background: var(--paper);
+button,
+input,
+textarea {
+  font: inherit;
 }
 
-.competence-item summary {
-  display: grid;
-  grid-template-columns: 56px 1fr 24px;
-  gap: 16px;
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -40px;
+  z-index: 20;
+  background: var(--blue);
+  color: #fff;
+  padding: 8px 12px;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+.shell {
+  width: min(1152px, calc(100% - 48px));
+  /* ширина кратна двум клеткам: края блоков попадают на линии фона */
+  width: round(down, min(1152px, calc(100% - 48px)), calc(var(--cell) * 2));
+  margin: 0 auto;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--blue);
+  border-bottom: 1px solid var(--blue-deep);
+}
+
+.header :focus-visible {
+  outline-color: #fff;
+}
+
+.header-bar {
+  min-height: var(--header);
+  display: flex;
   align-items: center;
-  min-height: 76px;
-  padding: 18px 22px;
-  cursor: pointer;
-  list-style: none;
-  font-size: 1.08rem;
-  font-weight: 600;
-  transition: background 160ms ease;
+  justify-content: space-between;
+  gap: 16px;
 }
 
-.competence-item summary::-webkit-details-marker {
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.brand-mark {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 5px 8px;
+}
+
+.brand-name {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.94rem;
+}
+
+.nav a:hover,
+.nav a:focus-visible {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+.menu-btn {
+  display: none;
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  min-height: 40px;
+  padding: 0 12px;
+  cursor: pointer;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0 18px;
+  border: 1px solid var(--blue);
+  background: transparent;
+  color: var(--blue);
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-solid,
+.nav .btn {
+  background: var(--blue);
+  color: #fff;
+}
+
+.btn:hover,
+.btn:focus-visible,
+.btn-solid:hover,
+.nav .btn:hover {
+  background: var(--blue-deep);
+  border-color: var(--blue-deep);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.hero {
+  padding: 64px 0 32px;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 32px 64px;
+  align-items: center;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 5vw, 4.4rem);
+  max-width: 13ch;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+}
+
+h3 {
+  font-size: 1.15rem;
+}
+
+.lead,
+.poster-lead,
+.spec-list p,
+.competence-grid p,
+.flow p {
+  color: var(--muted);
+}
+
+.lead {
+  margin: 16px 0 32px;
+  max-width: 48ch;
+}
+
+.hero-frame {
+  position: relative;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  margin: 0;
+  min-height: 416px;
+}
+
+.hero-frame img {
+  width: 100%;
+  height: 512px;
+  object-fit: cover;
+}
+
+.frame-marks::before,
+.frame-marks::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--blue);
+  z-index: 1;
+}
+
+.frame-marks::before {
+  top: 8px;
+  left: 8px;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.frame-marks::after {
+  right: 8px;
+  bottom: 8px;
+  border-left: 0;
+  border-top: 0;
+}
+
+figcaption,
+.media-fallback {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--steel);
+  padding: 10px 12px;
+}
+
+.media-fallback {
+  min-height: 220px;
+  place-items: center;
+  text-align: center;
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      #e7ebef,
+      #e7ebef 8px,
+      #f7f9fb 8px,
+      #f7f9fb 16px
+    );
+}
+
+.media-fallback[hidden] {
   display: none;
 }
 
-.competence-item summary:hover,
-.competence-item summary:focus-visible {
-  background: #f3f6f9;
+.hero-frame.is-fallback .media-fallback {
+  display: grid;
 }
 
-.competence-item summary:focus-visible {
-  outline: 2px solid var(--blue);
-  outline-offset: -3px;
+.hero-frame.is-fallback img {
+  display: none;
 }
 
-.competence-index {
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  font-weight: 400;
-  color: var(--blue);
+.block {
+  padding: 64px 0;
 }
 
-.accordion-icon {
+/* Единый отступ под всеми заголовками секций */
+.competence h2,
+#workflow h2,
+.discuss h2,
+.contacts h2 {
+  margin-bottom: 16px;
+}
+
+/* ===== Направления ремонта: афиша без фото ===== */
+.poster {
   position: relative;
-  width: 20px;
-  height: 20px;
-  justify-self: end;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  overflow: hidden;
 }
 
-.accordion-icon::before,
-.accordion-icon::after {
+/* Синяя диагональная полоса слева */
+.poster::before {
   content: "";
   position: absolute;
-  left: 3px;
-  top: 9px;
-  width: 14px;
-  height: 2px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 128px;
   background: var(--blue);
-  transition: transform 180ms ease;
+  clip-path: polygon(0 0, 100% 0, 55% 100%, 0 100%);
 }
 
-.accordion-icon::after {
-  transform: rotate(90deg);
+/* Синие вертикальные полоски в правом верхнем углу */
+.poster-stripes {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+  width: 128px;
+  height: 32px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--blue) 0 8px,
+    transparent 8px 16px
+  );
 }
 
-.competence-item[open] .accordion-icon::after {
-  transform: rotate(0deg);
+.poster-body {
+  position: relative;
+  padding: 63px 63px 63px 159px;
 }
 
-.competence-description {
-  padding: 0 62px 24px 94px;
-  max-width: 900px;
+.poster h2 {
+  margin-bottom: 16px;
+  max-width: 14ch;
+  font-size: clamp(1.9rem, 3.6vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.02;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
 }
 
-.competence-description p {
+.poster-lead {
+  margin: 0 0 32px;
+  max-width: 56ch;
+}
+
+.spec-list,
+.competence-grid,
+.flow,
+.contact-spec {
+  list-style: none;
   margin: 0;
-  color: var(--muted);
-  line-height: 1.7;
+  padding: 0;
 }
 
-@media (max-width: 760px) {
-  .intro-note {
-    padding: 28px 0 32px;
-  }
+/* Список направлений: плашки одной высоты с синей полосой слева */
+.spec-list {
+  display: grid;
+  grid-auto-rows: 1fr;
+  gap: 16px;
+}
 
-  .intro-note-inner {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
+.spec-list li {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 16px 28px;
+  background: #f6f8fa;
+  border-left: 4px solid var(--blue);
+}
 
-  .competence-item summary {
-    grid-template-columns: 36px 1fr 22px;
-    gap: 12px;
-    padding: 17px 14px;
-    font-size: 1rem;
-  }
+.spec-list h3,
+.competence-grid h3,
+.flow h3 {
+  margin-bottom: 8px;
+}
 
-  .competence-description {
-    padding: 0 18px 22px 62px;
-  }
+.spec-list h3 {
+  margin-bottom: 4px;
+}
+
+.spec-list p,
+.competence-grid p,
+.flow p {
+  margin: 0;
+}
+
+.competence {
+  background: var(--paper);
+  border-block: 1px solid var(--line);
+}
+
+/* Компетентность: внешняя рамка того же цвета, что и внутренние линии,
+   поэтому слева и справа линии такие же, как между карточками */
+.competence-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  margin-top: 32px;
+}
+
+/* У каждой карточки синяя «шапка» с заголовком, текст ниже */
+.competence-grid li {
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  padding: 0;
+}
+
+.competence-grid h3 {
+  margin: 0;
+  padding: 16px calc(var(--cell) - 1px);
+  background: var(--blue);
+  color: #fff;
+}
+
+.competence-grid p {
+  padding: 24px calc(var(--cell) - 1px) calc(var(--cell) - 1px);
+}
+
+.competence-grid .span-wide {
+  grid-column: span 2;
+}
+
+/* Порядок работы: карточки одной высоты, заголовки на одной линии */
+.flow {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1fr;
+  gap: 32px 64px;
+}
+
+.flow li {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--blue);
+  padding: calc(var(--cell) - 2px) calc(var(--cell) - 1px) calc(var(--cell) - 1px);
+}
+
+/* ===== «Порядок работы»: катки выглядывают из краёв страницы ===== */
+#workflow {
+  position: relative;
+  overflow: hidden;
+}
+
+#workflow .shell {
+  position: relative;
+  z-index: 1; /* карточки и заголовок выше катков */
+}
+
+.roller {
+  position: absolute;
+  bottom: 48px;
+  width: clamp(270px, 33vw, 510px);
+  height: auto;
+  pointer-events: none;
+}
+
+/* Справа: фото как есть, чуть больше половины видно, передняя часть с вальцом */
+.roller-right {
+  right: 0;
+  transform: translateX(38%);
+}
+
+/* Слева: фото отражено, видна та же передняя часть */
+.roller-left {
+  left: 0;
+  transform: translateX(-38%) scaleX(-1);
+}
+
+.discuss {
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+}
+
+.discuss-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.discuss .lead {
+  margin-bottom: 0;
+}
+
+/* ===== Экскаватор в блоке «Обсудить ремонт» ===== */
+/* Обёртка обрезает только правый край (clip-path), слева открыто до края
+   страницы: экскаватор выезжает из левой части экрана. Горизонтальной
+   прокрутки нет, потому что у body стоит overflow-x: hidden. */
+.dig {
+  margin-top: 32px;
+  border-bottom: 2px solid var(--line);
+  clip-path: inset(0 0 0 -100vw);
+}
+
+/* scaleX(-1) отражает фото: ковш смотрит вправо */
+.dig-img {
+  display: block;
+  width: min(100%, 460px);
+  height: auto;
+  transform: scaleX(-1);
+  transition: transform 2s cubic-bezier(0.16, 0.84, 0.3, 1);
+}
+
+/* Стартовое положение (за левым краем экрана) включает только скрипт,
+   поэтому без JavaScript картинка просто стоит на месте */
+.dig.is-armed .dig-img {
+  transform: translate3d(-100vw, 0, 0) scaleX(-1);
+}
+
+.dig.is-armed.is-in .dig-img {
+  transform: translate3d(0, 0, 0) scaleX(-1);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .competence-item summary,
-  .accordion-icon::before,
-  .accordion-icon::after {
+  .dig-img {
     transition: none;
   }
+}
+
+@media (max-width: 760px) {
+  .dig-img {
+    width: min(100%, 320px);
+  }
+}
+
+.form {
+  display: grid;
+  gap: 16px;
+  border: 1px solid var(--line);
+  padding: calc(var(--cell) - 1px);
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.field.is-invalid input,
+.field.is-invalid textarea {
+  border-color: var(--danger);
+}
+
+label {
+  font-weight: 600;
+}
+
+input,
+textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: #f8fafb;
+  color: var(--ink);
+  padding: 12px 14px;
+}
+
+.hint,
+.error {
+  margin: 0;
+  font-size: 0.86rem;
+}
+
+.hint {
+  color: var(--muted);
+}
+
+.error {
+  color: var(--danger);
+}
+
+.status {
+  margin: 0;
+  min-height: 1.4em;
+}
+
+.status.is-ok {
+  color: var(--ok);
+}
+
+.status.is-bad {
+  color: var(--danger);
+}
+
+.contact-spec {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px 64px;
+  margin-top: 32px;
+}
+
+.contact-spec div {
+  border-top: 2px solid var(--blue);
+  padding-top: 12px;
+}
+
+dt {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--blue);
+  margin-bottom: 6px;
+}
+
+dd {
+  margin: 0;
+}
+
+.footer {
+  border-top: 1px solid var(--line);
+  background: var(--paper);
+  padding: 32px 0;
+}
+
+.footer-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.footer-row p {
+  margin: 0;
+}
+
+.footer nav {
+  display: flex;
+  gap: 16px;
+}
+
+.footer a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.footer a:hover,
+.footer a:focus-visible {
+  color: var(--ink);
+}
+
+@media (max-width: 1080px) {
+  .hero-grid,
+  .discuss-grid,
+  .competence-grid,
+  .contact-spec,
+  .flow {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .competence-grid .span-wide {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Афиша «Направления»: на узких экранах полоса слева становится линией сверху */
+@media (max-width: 900px) {
+  .poster::before {
+    right: 0;
+    bottom: auto;
+    width: auto;
+    height: 16px;
+    clip-path: none;
+  }
+
+  .poster-body {
+    padding: 63px 31px 31px;
+  }
+
+  .poster h2 {
+    max-width: none;
+  }
+
+  .poster-stripes {
+    top: 16px;
+    right: 16px;
+    width: 96px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 760px) {
+  :root {
+    --cell: 16px;
+  }
+
+  .shell {
+    width: calc(100% - 32px);
+    width: round(down, calc(100% - 32px), calc(var(--cell) * 2));
+  }
+
+  .menu-btn {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .nav {
+    display: none;
+    position: absolute;
+    top: var(--header);
+    left: 0;
+    right: 0;
+    background: var(--blue-deep);
+    border-bottom: 1px solid var(--blue-deep);
+    padding: 16px 20px 20px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .nav.is-open {
+    display: flex;
+  }
+
+  .hero {
+    padding: 32px 0 16px;
+  }
+
+  .discuss-grid {
+    gap: 32px;
+  }
+
+  .hero-grid,
+  .discuss-grid,
+  .competence-grid,
+  .contact-spec,
+  .flow,
+  .footer-row {
+    grid-template-columns: 1fr;
+  }
+
+  .competence-grid .span-wide {
+    grid-column: auto;
+  }
+
+  /* На телефоне высота карточек определяется их содержимым */
+  .flow,
+  .spec-list {
+    grid-auto-rows: auto;
+  }
+
+  .poster-body {
+    padding: 47px 15px 31px;
+  }
+
+  .hero-frame img {
+    height: 272px;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .footer-row,
+  .footer nav {
+    flex-direction: column;
+  }
+
+  .block {
+    padding: 48px 0;
+  }
+}
+
+@media (max-width: 390px) {
+  h1 {
+    font-size: 2rem;
+  }
+}
