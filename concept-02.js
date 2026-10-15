@@ -1,151 +1,129 @@
-
 (function () {
+  "use strict";
+
+  /* Мобильное меню */
   var nav = document.getElementById("primary-nav");
-  var toggle = document.querySelector(".menu-btn");
-  var form = document.getElementById("discuss-form");
-  var statusEl = document.getElementById("form-status");
+  var menuButton = document.querySelector(".menu-btn");
 
-  function loadMedia() {
-    document.querySelectorAll(".media").forEach(function (img) {
-      var src = img.getAttribute("data-src");
-      var frame = img.closest(".hero-frame, .inset-frame");
-      var fallback = frame ? frame.querySelector(".media-fallback") : null;
-
-      if (!src) {
-        showFallback(frame, img, fallback);
-        return;
-      }
-
-      img.addEventListener("error", function () {
-        showFallback(frame, img, fallback);
-      });
-
-      img.src = src;
-    });
-  }
-
-  function showFallback(frame, img, fallback) {
-    if (frame) frame.classList.add("is-fallback");
-    if (img) img.setAttribute("hidden", "hidden");
-    if (fallback) fallback.hidden = false;
-  }
-
-  function closeNav() {
-    if (!nav || !toggle) return;
+  function closeMenu() {
+    if (!nav || !menuButton) return;
 
     nav.classList.remove("is-open");
-    toggle.setAttribute("aria-expanded", "false");
-    toggle.setAttribute("aria-label", "Открыть меню");
+    menuButton.setAttribute("aria-expanded", "false");
+    menuButton.setAttribute("aria-label", "Открыть меню");
   }
 
-  if (toggle && nav) {
-    toggle.addEventListener("click", function () {
-      var open = nav.classList.toggle("is-open");
+  if (nav && menuButton) {
+    menuButton.addEventListener("click", function () {
+      var isOpen = nav.classList.toggle("is-open");
 
-      toggle.setAttribute("aria-expanded", String(open));
-      toggle.setAttribute(
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+      menuButton.setAttribute(
         "aria-label",
-        open ? "Закрыть меню" : "Открыть меню"
+        isOpen ? "Закрыть меню" : "Открыть меню"
       );
     });
 
     nav.querySelectorAll("a").forEach(function (link) {
-      link.addEventListener("click", closeNav);
+      link.addEventListener("click", closeMenu);
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") closeMenu();
     });
   }
 
+  /* Плавная прокрутка к разделам */
   document.querySelectorAll('a[href^="#"]').forEach(function (link) {
     link.addEventListener("click", function (event) {
-      var id = link.getAttribute("href");
-      var target = id ? document.querySelector(id) : null;
+      var href = link.getAttribute("href");
+      var target = href ? document.querySelector(href) : null;
 
       if (!target) return;
 
       event.preventDefault();
+
       target.scrollIntoView({
-        behavior: "smooth",
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "auto"
+          : "smooth",
         block: "start"
       });
     });
   });
 
-  function initDigger() {
-    var track = document.querySelector(".dig");
-    if (!track) return;
+  /* Загрузка изображения с резервным сообщением */
+  document.querySelectorAll("img.media").forEach(function (img) {
+    var frame = img.closest(".hero-frame");
+    var fallback = frame
+      ? frame.querySelector(".media-fallback")
+      : null;
+    var src = img.getAttribute("data-src");
 
-    var reduce = window.matchMedia &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (reduce || !("IntersectionObserver" in window)) return;
-
-    track.classList.add("is-armed");
-
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
-          track.classList.add("is-in");
-        } else if (!entry.isIntersecting) {
-          track.classList.remove("is-in");
-        }
-      });
-    }, {
-      threshold: [0, 0.35]
-    });
-
-    observer.observe(track);
-  }
-
-  function setError(name, message) {
-    if (!form) return;
-
-    var input = form.querySelector('[name="' + name + '"]');
-    if (!input) return;
-
-    var field = input.closest(".field");
-    var error = document.getElementById(name + "-error");
-
-    if (field) field.classList.add("is-invalid");
-
-    if (error) {
-      error.hidden = false;
-      error.textContent = message;
+    function showFallback() {
+      if (frame) frame.classList.add("is-fallback");
+      if (fallback) fallback.hidden = false;
+      img.hidden = true;
     }
-  }
 
-  function clearErrors() {
-    if (!form || !statusEl) return;
+    img.addEventListener("error", showFallback);
 
-    form.querySelectorAll(".field").forEach(function (field) {
+    if (src) {
+      img.src = src;
+    } else {
+      showFallback();
+    }
+  });
+
+  /* Проверка основной формы */
+  var form = document.getElementById("discuss-form");
+  var formStatus = document.getElementById("form-status");
+
+  function clearFormErrors(currentForm) {
+    if (!currentForm) return;
+
+    currentForm.querySelectorAll(".field").forEach(function (field) {
       field.classList.remove("is-invalid");
     });
 
-    form.querySelectorAll(".error").forEach(function (error) {
-      error.hidden = true;
+    currentForm.querySelectorAll(".error").forEach(function (error) {
       error.textContent = "";
+      error.hidden = true;
     });
-
-    statusEl.textContent = "";
-    statusEl.className = "status";
   }
 
-  function isPhoneValid(value) {
+  function setFieldError(currentForm, fieldName, message) {
+    var field = currentForm.querySelector('[name="' + fieldName + '"]');
+    if (!field) return;
+
+    var wrapper = field.closest(".field");
+    var error = wrapper ? wrapper.querySelector(".error") : null;
+
+    if (wrapper) wrapper.classList.add("is-invalid");
+
+    if (error) {
+      error.textContent = message;
+      error.hidden = false;
+    }
+  }
+
+  function validPhone(value) {
     var digits = value.replace(/\D/g, "");
 
-    if (
-      digits.length === 11 &&
-      (digits[0] === "7" || digits[0] === "8")
-    ) {
-      return true;
-    }
-
-    return digits.length === 10;
+    return (
+      digits.length === 10 ||
+      (digits.length === 11 && (digits.charAt(0) === "7" ||
+        digits.charAt(0) === "8"))
+    );
   }
 
-  /* Проверка основной формы «Обсудить ремонт» */
-  if (form && statusEl) {
+  if (form && formStatus) {
     form.addEventListener("submit", function (event) {
       event.preventDefault();
-      clearErrors();
+
+      clearFormErrors(form);
+      formStatus.textContent = "";
+      formStatus.className = "status";
 
       var name = form.elements.name.value.trim();
       var phone = form.elements.phone.value.trim();
@@ -154,175 +132,156 @@
       var valid = true;
 
       if (!name) {
-        setError("name", "Укажите имя.");
+        setFieldError(form, "name", "Укажите ваше имя.");
         valid = false;
       }
 
       if (!phone) {
-        setError("phone", "Укажите телефон.");
+        setFieldError(form, "phone", "Укажите номер телефона.");
         valid = false;
-      } else if (!isPhoneValid(phone)) {
-        setError(
+      } else if (!validPhone(phone)) {
+        setFieldError(
+          form,
           "phone",
-          "Проверьте номер: 10 цифр либо 11 цифр с +7 или 8."
+          "Проверьте номер телефона: укажите 10 цифр или 11 цифр с +7/8."
         );
         valid = false;
       }
 
       if (!machine) {
-        setError("machine", "Укажите тип техники.");
+        setFieldError(form, "machine", "Укажите тип и модель техники.");
         valid = false;
       }
 
       if (!issue) {
-        setError("issue", "Опишите неисправность.");
+        setFieldError(form, "issue", "Опишите неисправность.");
         valid = false;
       }
 
       if (!valid) {
-        statusEl.textContent = "Заполните обязательные поля.";
-        statusEl.classList.add("is-bad");
+        formStatus.textContent = "Пожалуйста, заполните обязательные поля.";
+        formStatus.classList.add("is-bad");
         return;
       }
 
-      form.reset();
+      formStatus.textContent =
+        "Проверка пройдена. Это демонстрационный режим: заявка не отправлена, " +
+        "так как обработчик формы ещё не подключён.";
 
-      statusEl.textContent =
-        "Демонстрационная заявка проверена только в браузере. " +
-        "Данные никуда не отправлены: сервер не подключён.";
-
-      statusEl.classList.add("is-ok");
+      formStatus.classList.add("is-ok");
     });
   }
 
-  /* Выездной сервис: переключение карточки на форму */
-  function initMasterVisitForm() {
-    var intro = document.getElementById("mobile-service-intro");
-    var masterForm = document.getElementById("master-visit-form");
-    var openButton = document.getElementById("call-master-btn");
-    var cancelButton = document.getElementById("cancel-master-form");
-    var masterStatus = document.getElementById("master-form-status");
+  /* Горизонтальная карусель отзывов */
+  var viewport = document.getElementById("reviews-viewport");
+  var track = document.getElementById("reviews-track");
+  var counter = document.getElementById("reviews-counter");
+  var dotsContainer = document.getElementById("reviews-dots");
+  var prevButton = document.querySelector(".review-prev");
+  var nextButton = document.querySelector(".review-next");
 
-    if (!intro || !masterForm || !openButton) return;
+  if (viewport && track && counter && prevButton && nextButton) {
+    var cards = Array.from(track.querySelectorAll(".review-card"));
+    var dots = dotsContainer
+      ? Array.from(dotsContainer.querySelectorAll(".review-dot"))
+      : [];
 
-    function clearMasterErrors() {
-      masterForm.querySelectorAll(".field").forEach(function (field) {
-        field.classList.remove("is-invalid");
-      });
+    var currentIndex = 0;
+    var resizeTimer;
 
-      masterForm.querySelectorAll(".error").forEach(function (error) {
-        error.hidden = true;
-        error.textContent = "";
-      });
+    function getStep() {
+      if (cards.length < 2) return 0;
 
-      if (masterStatus) {
-        masterStatus.textContent = "";
-        masterStatus.className = "status";
-      }
+      var firstCard = cards[0];
+      var secondCard = cards[1];
+
+      return secondCard.offsetLeft - firstCard.offsetLeft;
     }
 
-    function setMasterError(name, message) {
-      var input = masterForm.querySelector('[name="' + name + '"]');
-      if (!input) return;
+    function getMaxIndex() {
+      if (!cards.length) return 0;
 
-      var field = input.closest(".field");
-      var error = document.getElementById(name + "-error");
+      var step = getStep();
+      if (!step) return 0;
 
-      if (field) field.classList.add("is-invalid");
+      var maxScroll = Math.max(0, track.scrollWidth - viewport.clientWidth);
 
-      if (error) {
-        error.hidden = false;
-        error.textContent = message;
-      }
+      return Math.max(0, Math.round(maxScroll / step));
     }
 
-    openButton.addEventListener("click", function () {
-      intro.hidden = true;
-      masterForm.hidden = false;
+    function updateCarousel() {
+      var step = getStep();
+      var maxIndex = getMaxIndex();
 
-      openButton.setAttribute("aria-expanded", "true");
+      currentIndex = Math.max(0, Math.min(currentIndex, maxIndex));
 
-      var firstInput = masterForm.querySelector("input");
+      track.style.transform =
+        "translateX(-" + (currentIndex * step) + "px)";
 
-      if (firstInput) {
-        firstInput.focus();
+      counter.textContent =
+        String(currentIndex + 1).padStart(2, "0") +
+        " / " +
+        String(maxIndex + 1).padStart(2, "0");
+
+      prevButton.disabled = currentIndex === 0;
+      nextButton.disabled = currentIndex >= maxIndex;
+
+      dots.forEach(function (dot, index) {
+        var active = index === currentIndex;
+
+        dot.classList.toggle("is-active", active);
+
+        if (active) {
+          dot.setAttribute("aria-current", "true");
+        } else {
+          dot.removeAttribute("aria-current");
+        }
+
+        dot.hidden = index > maxIndex;
+      });
+    }
+
+    prevButton.addEventListener("click", function () {
+      currentIndex = Math.max(0, currentIndex - 1);
+      updateCarousel();
+    });
+
+    nextButton.addEventListener("click", function () {
+      currentIndex = Math.min(getMaxIndex(), currentIndex + 1);
+      updateCarousel();
+    });
+
+    dots.forEach(function (dot, index) {
+      dot.addEventListener("click", function () {
+        currentIndex = Math.min(index, getMaxIndex());
+        updateCarousel();
+      });
+    });
+
+    /* Прокрутка карусели клавишами */
+    viewport.addEventListener("keydown", function (event) {
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        currentIndex = Math.max(0, currentIndex - 1);
+        updateCarousel();
+      }
+
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        currentIndex = Math.min(getMaxIndex(), currentIndex + 1);
+        updateCarousel();
       }
     });
 
-    if (cancelButton) {
-      cancelButton.addEventListener("click", function () {
-        masterForm.reset();
-        clearMasterErrors();
+    /* Пересчёт ширины карточек при изменении окна */
+    window.addEventListener("resize", function () {
+      window.clearTimeout(resizeTimer);
 
-        masterForm.hidden = true;
-        intro.hidden = false;
-
-        openButton.setAttribute("aria-expanded", "false");
-        openButton.focus();
-      });
-    }
-
-    masterForm.addEventListener("submit", function (event) {
-      event.preventDefault();
-      clearMasterErrors();
-
-      var requiredFields = [
-        ["visitName", "Укажите имя."],
-        ["visitPhone", "Укажите телефон."],
-        ["visitMachine", "Укажите тип и модель техники."],
-        ["visitAddress", "Укажите адрес объекта."],
-        ["visitIssue", "Опишите неисправность."]
-      ];
-
-      var valid = true;
-
-      requiredFields.forEach(function (item) {
-        var field = masterForm.elements[item[0]];
-
-        if (!field || !field.value.trim()) {
-          setMasterError(item[0], item[1]);
-          valid = false;
-        }
-      });
-
-      var phone = masterForm.elements.visitPhone.value.trim();
-
-      if (phone && !isPhoneValid(phone)) {
-        setMasterError(
-          "visitPhone",
-          "Проверьте номер телефона: укажите 10 цифр " +
-          "или 11 цифр с +7/8."
-        );
-
-        valid = false;
-      }
-
-      if (!valid) {
-        if (masterStatus) {
-          masterStatus.textContent =
-            "Пожалуйста, заполните обязательные поля.";
-
-          masterStatus.classList.add("is-bad");
-        }
-
-        return;
-      }
-
-      /*
-       * Пока сервер не подключён, форма только проверяет данные.
-       * Заявка не отправляется и не сохраняется вне браузера.
-       */
-      if (masterStatus) {
-        masterStatus.textContent =
-          "Форма заполнена, но отправка пока не подключена. " +
-          "Данные не переданы в сервисный центр.";
-
-        masterStatus.classList.add("is-bad");
-      }
+      resizeTimer = window.setTimeout(function () {
+        updateCarousel();
+      }, 100);
     });
+
+    updateCarousel();
   }
-
-  loadMedia();
-  initDigger();
-  initMasterVisitForm();
 })();
