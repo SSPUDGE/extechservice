@@ -1164,3 +1164,20 @@ textarea:focus {
     animation-iteration-count: 1 !important;
   }
 }
+
+/* Карусель отзывов: горизонтальное переключение */
+.review-card {
+  flex-basis: 82%;
+}
+
+@media (max-width: 1000px) {
+  .review-card {
+    flex-basis: 82%;
+  }
+}
+
+@media (max-width: 760px) {
+  .review-card {
+    flex-basis: 100%;
+  }
+}
