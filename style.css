@@ -371,34 +371,35 @@ h3 {
 }
 
 .advantages {
-position: relative;
-isolation: isolate;
-overflow: hidden;
-background-color: var(--bg-elevated);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-color: var(--bg-elevated);
 }
 
 .advantages::before {
-content: "";
-position: absolute;
-inset: 0;
-background-image: url("./hero-rem1.jpg");
-background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
-z-index: -2;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("./hero-rem1.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
 }
 
 .advantages::after {
-content: "";
-position: absolute;
-inset: 0;
-background: rgba(10, 14, 18, 0.55);
-z-index: -1;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 14, 18, 0.45);
+  z-index: -1;
+  pointer-events: none;
 }
 
 .advantages > .container {
-position: relative;
-z-index: 1;
+  position: relative;
+  z-index: 1;
 }
 
 .advantages-layout {
