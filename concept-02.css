@@ -1312,39 +1312,46 @@ textarea:focus {
     animation-iteration-count: 1 !important;
   }
 }
-```css
-/* Бренды техники под фотографией на главном экране */
+/* Бренды под фотографией — четыре равные колонки */
 .hero-brands {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  justify-items: center;
 
   width: 100%;
   box-sizing: border-box;
-  padding: 18px 8px 8px;
+  padding: 20px 0 8px;
+  gap: 0;
 
   font-family: "IBM Plex Sans", sans-serif;
-  font-size: clamp(16px, 2vw, 23px);
+  font-size: clamp(15px, 2vw, 24px);
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   color: var(--ink, #20252b);
+  white-space: nowrap;
 }
 
 .hero-brands span {
-  color: var(--accent, #e5a12a);
-  font-size: 1.2em;
-  font-weight: 500;
+  display: none;
 }
 
-/* На мобильных устройствах */
+/* Разделители между брендами */
+.hero-brands {
+  background-image:
+    linear-gradient(var(--accent, #e5a12a), var(--accent, #e5a12a)),
+    linear-gradient(var(--accent, #e5a12a), var(--accent, #e5a12a)),
+    linear-gradient(var(--accent, #e5a12a), var(--accent, #e5a12a));
+  background-repeat: no-repeat;
+  background-size: 4px 4px, 4px 4px, 4px 4px;
+  background-position: 25% 55%, 50% 55%, 75% 55%;
+}
+
 @media (max-width: 480px) {
   .hero-brands {
-    gap: 6px;
-    padding: 14px 0 6px;
-    font-size: clamp(12px, 3.5vw, 16px);
-    letter-spacing: 0.01em;
+    font-size: clamp(10px, 3.1vw, 14px);
+    letter-spacing: 0;
+    padding-top: 14px;
   }
 }
-```
