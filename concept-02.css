@@ -1181,3 +1181,78 @@ textarea:focus {
     flex-basis: 100%;
   }
 }
+
+/* === Правки шапки, цифровых значков и клеточного фона === */
+
+/* Белая кнопка заказа ремонта с синим текстом */
+.header .nav a.header-order-btn {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 9px 14px;
+  border: 1px solid #ffffff;
+  background: #ffffff;
+  color: #1f4e79;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.header .nav a.header-order-btn:hover,
+.header .nav a.header-order-btn:focus-visible {
+  border-color: #ffffff;
+  background: #eaf1f8;
+  color: #163a5c;
+  text-decoration: none;
+}
+
+/* Убираем цифровые значки, если они остались в HTML */
+.step-number,
+.contact-point-icon {
+  display: none !important;
+}
+
+/* Клеточная сетка начинается от левого края основного контейнера */
+body {
+  background-position:
+    max(24px, calc((100vw - 1152px) / 2)) 0,
+    max(24px, calc((100vw - 1152px) / 2)) 0;
+}
+
+/* Шапка: компактное меню на средних экранах */
+@media (max-width: 1100px) and (min-width: 761px) {
+  .header-bar {
+    gap: 12px;
+  }
+
+  .nav {
+    gap: 10px;
+  }
+
+  .nav a {
+    font-size: 0.78rem;
+  }
+
+  .header .nav a.header-order-btn {
+    padding: 8px 10px;
+    font-size: 0.75rem;
+  }
+}
+
+/* На мобильных кнопка заказа остаётся внутри раскрывающегося меню */
+@media (max-width: 760px) {
+  body {
+    background-position: 16px 0, 16px 0;
+  }
+
+  .header .nav a.header-order-btn {
+    justify-content: center;
+    margin-top: 10px;
+    padding: 12px 14px;
+    font-size: 0.9rem;
+  }
+}
