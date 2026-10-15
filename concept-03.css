@@ -14,6 +14,7 @@
   --mono: "JetBrains Mono", "Consolas", monospace;
 }
 
+/* ---------- Базовые настройки ---------- */
 *,
 *::before,
 *::after {
@@ -22,7 +23,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--header) + 16px);
+  scroll-padding-top: 24px;
 }
 
 html,
@@ -133,6 +134,10 @@ h3 {
   text-decoration: none;
   font-weight: 700;
   cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .btn-accent {
@@ -171,12 +176,12 @@ h3 {
   color: var(--ink);
 }
 
-/* ---------- Шапка ---------- */
+/* ---------- Шапка сайта ---------- */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(243, 242, 238, 0.95);
+  background: rgba(243, 242, 238, 0.97);
   border-bottom: 2px solid var(--ink);
 }
 
@@ -193,13 +198,18 @@ h3 {
   align-items: center;
   gap: 12px;
   text-decoration: none;
+  flex-shrink: 0;
 }
 
 .brand-mark {
   width: 22px;
   height: 22px;
-  background:
-    linear-gradient(135deg, var(--accent) 50%, var(--graphite) 50%);
+  flex-shrink: 0;
+  background: linear-gradient(
+    135deg,
+    var(--accent) 50%,
+    var(--graphite) 50%
+  );
 }
 
 .brand-name {
@@ -253,8 +263,8 @@ h3 {
   margin: 5px auto;
   background: var(--ink);
 }
-```css
-/* ---------- Информационная полоса в шапке ---------- */
+
+/* ---------- Информация в шапке ---------- */
 .header-info {
   border-top: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.55);
@@ -297,31 +307,9 @@ h3 {
   font-size: 0.9rem;
   font-weight: 600;
   line-height: 1.4;
+  overflow-wrap: anywhere;
 }
 
-/* Информационная полоса на планшетах и телефонах */
-@media (max-width: 760px) {
-  .header-info-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .header-info-item,
-  .header-info-item:first-child,
-  .header-info-item:last-child {
-    padding: 10px 0;
-    border-left: 0;
-    border-top: 1px solid var(--line);
-  }
-
-  .header-info-item:first-child {
-    border-top: 0;
-  }
-
-  .header-info-value {
-    font-size: 0.88rem;
-  }
-}
-```
 /* ---------- Первый экран ---------- */
 .hero {
   padding: 56px 0 0;
@@ -333,6 +321,10 @@ h3 {
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
   gap: 48px;
   align-items: end;
+}
+
+.hero-copy {
+  min-width: 0;
 }
 
 .hero-lead {
@@ -348,7 +340,7 @@ h3 {
   gap: 12px;
 }
 
-/* Графитовая панель с техникой и «чертёжной» сеткой */
+/* Панель с изображением техники */
 .hero-panel {
   position: relative;
   margin: 0;
@@ -359,8 +351,15 @@ h3 {
   justify-content: flex-end;
   background-color: var(--graphite);
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    linear-gradient(
+      rgba(255, 255, 255, 0.06) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.06) 1px,
+      transparent 1px
+    );
   background-size: 32px 32px;
   color: #fff;
 }
@@ -372,6 +371,7 @@ h3 {
   width: 22px;
   height: 22px;
   border: 3px solid var(--accent);
+  pointer-events: none;
 }
 
 .hero-panel::before {
@@ -412,39 +412,7 @@ h3 {
   color: var(--muted-light);
 }
 
-/* Строка фактов под первым экраном */
-.facts {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  margin: 0;
-  background: var(--ink);
-  color: #fff;
-}
-
-.facts div {
-  padding: 22px 28px;
-  border-left: 1px solid rgba(255, 255, 255, 0.16);
-}
-
-.facts div:first-child {
-  border-left: 0;
-}
-
-.facts dt {
-  margin: 0 0 4px;
-  font-family: var(--mono);
-  font-size: 0.74rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-.facts dd {
-  margin: 0;
-  font-weight: 600;
-}
-
-/* ---------- Услуги: каталог из карточек разного размера ---------- */
+/* ---------- Каталог услуг ---------- */
 .section {
   padding: 104px 0;
 }
@@ -466,13 +434,14 @@ h3 {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 16px;
 }
 
 .card {
   display: flex;
   flex-direction: column;
+  min-width: 0;
   padding: 32px;
   background: var(--white);
   border: 2px solid var(--ink);
@@ -608,7 +577,7 @@ h3 {
   color: var(--ink);
 }
 
-/* ---------- Заглушка этапа 2 и подвал ---------- */
+/* ---------- Блок заявки ---------- */
 .next {
   padding: 72px 0;
   background: var(--ink);
@@ -630,6 +599,7 @@ h3 {
   color: var(--muted-light);
 }
 
+/* ---------- Подвал ---------- */
 .site-footer {
   padding: 28px 0;
   background: var(--paper);
@@ -649,7 +619,7 @@ h3 {
   font-size: 0.92rem;
 }
 
-/* ---------- Адаптивность ---------- */
+/* ---------- Планшеты ---------- */
 @media (max-width: 1000px) {
   .hero-grid {
     grid-template-columns: 1fr;
@@ -660,43 +630,9 @@ h3 {
     min-height: 380px;
   }
 
-  .facts {
-    grid-template-columns: 1fr;
-  }
-
-  .facts div {
-    border-left: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.16);
-  }
-
-  .facts div:first-child {
-    border-top: 0;
-  }
-
-  .card-machines,
-  .card-hydro,
-  .card-drive,
-  .card-engine,
-  .card-parts {
-    grid-column: 1 / -1;
-    grid-row: auto;
-  }
-
-  .card-hydro,
-  .card-drive {
-    grid-column: span 6;
-  }
-
-  .card-engine {
-    grid-column: span 6;
-  }
-
-  .card-parts {
-    grid-column: span 6;
-  }
-
   .card-machines {
     grid-column: 1 / -1;
+    grid-row: auto;
   }
 
   .card-hydro {
@@ -720,23 +656,37 @@ h3 {
   }
 }
 
+/* ---------- Телефоны ---------- */
 @media (max-width: 760px) {
   :root {
     --header: 64px;
+  }
+
+  html {
+    scroll-padding-top: 16px;
   }
 
   .wrap {
     width: calc(100% - 32px);
   }
 
+  .brand-name {
+    font-size: 1.12rem;
+  }
+
   .nav-toggle {
     display: inline-block;
+    flex-shrink: 0;
+  }
+
+  .site-header {
+    position: sticky;
   }
 
   .site-nav {
     display: none;
     position: absolute;
-    top: var(--header);
+    top: 100%;
     left: 0;
     right: 0;
     flex-direction: column;
@@ -757,18 +707,55 @@ h3 {
     font-size: 1.1rem;
   }
 
+  .site-nav .btn {
+    width: 100%;
+  }
+
+  /* Адрес, график и выезд в шапке */
+  .header-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .header-info-item,
+  .header-info-item:first-child,
+  .header-info-item:last-child {
+    padding: 10px 0;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .header-info-item:first-child {
+    border-top: 0;
+  }
+
+  .header-info-value {
+    font-size: 0.88rem;
+  }
+
   .hero {
     padding-top: 40px;
   }
 
-  .hero-actions .btn,
-  .site-nav .btn {
+  .hero-lead {
+    margin: 22px 0 28px;
+    font-size: 1rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .hero-actions .btn {
     width: 100%;
   }
 
   .hero-panel {
     min-height: 340px;
     padding: 56px 16px 0;
+  }
+
+  .panel-label {
+    left: 16px;
   }
 
   .section {
@@ -779,16 +766,26 @@ h3 {
     margin-bottom: 32px;
   }
 
-  .card {
-    padding: 24px;
+  .bento {
+    grid-template-columns: minmax(0, 1fr);
   }
 
+  .card,
   .card-machines,
   .card-hydro,
   .card-drive,
   .card-engine,
   .card-parts {
     grid-column: 1 / -1;
+    grid-row: auto;
+  }
+
+  .card {
+    padding: 24px;
+  }
+
+  .card-machines h3 {
+    font-size: clamp(2rem, 8vw, 3rem);
   }
 
   .footer-inner {
@@ -796,14 +793,37 @@ h3 {
   }
 }
 
+/* ---------- Очень маленькие экраны ---------- */
 @media (max-width: 390px) {
   h1 {
     font-size: 2.2rem;
   }
+
+  .brand-name {
+    font-size: 1rem;
+  }
+
+  .hero-panel {
+    min-height: 300px;
+  }
+
+  .card {
+    padding: 20px;
+  }
 }
 
+/* ---------- Уменьшение анимации по настройкам устройства ---------- */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }
