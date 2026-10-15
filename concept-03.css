@@ -9,7 +9,6 @@
   --line: #d8d6cf;
   --accent: #ff6b1a;
   --accent-strong: #ff8140;
-  --header: 72px;
   --sans: "Archivo", "Segoe UI", sans-serif;
   --mono: "JetBrains Mono", "Consolas", monospace;
 }
@@ -181,16 +180,16 @@ h3 {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(243, 242, 238, 0.97);
+  background: rgba(243, 242, 238, 0.98);
   border-bottom: 2px solid var(--ink);
 }
 
 .header-inner {
-  min-height: var(--header);
+  min-height: 100px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 28px;
 }
 
 .brand {
@@ -198,7 +197,7 @@ h3 {
   align-items: center;
   gap: 12px;
   text-decoration: none;
-  flex-shrink: 0;
+  flex: 0 0 auto;
 }
 
 .brand-mark {
@@ -213,98 +212,43 @@ h3 {
 }
 
 .brand-name {
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   font-weight: 800;
   letter-spacing: -0.01em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
-.site-nav {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-}
-
-.site-nav ul {
-  display: flex;
-  gap: 28px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.site-nav ul a {
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.site-nav ul a:hover,
-.site-nav ul a:focus-visible {
-  text-decoration: underline;
-  text-decoration-color: var(--accent);
-  text-decoration-thickness: 3px;
-  text-underline-offset: 6px;
-}
-
-.nav-toggle {
-  display: none;
-  width: 46px;
-  height: 46px;
-  padding: 0;
-  border: 2px solid var(--ink);
-  background: transparent;
-  cursor: pointer;
-}
-
-.nav-toggle span {
-  display: block;
-  width: 20px;
-  height: 2px;
-  margin: 5px auto;
-  background: var(--ink);
-}
-
-/* ---------- Информация в шапке ---------- */
+/* Адрес, график и выезд — в одной строке с названием */
 .header-info {
-  border-top: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.55);
-}
-
-.header-info-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1.3fr;
+  grid-template-columns: 1fr 1fr 1.2fr;
+  align-items: stretch;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .header-info-item {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 4px;
+  gap: 5px;
   min-width: 0;
-  padding: 14px 22px;
+  padding: 8px 16px;
   border-left: 1px solid var(--line);
-}
-
-.header-info-item:first-child {
-  padding-left: 0;
-  border-left: 0;
-}
-
-.header-info-item:last-child {
-  padding-right: 0;
 }
 
 .header-info-label {
   font-family: var(--mono);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 500;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--muted);
 }
 
 .header-info-value {
-  font-size: 0.9rem;
+  font-size: 0.84rem;
   font-weight: 600;
   line-height: 1.4;
   overflow-wrap: anywhere;
@@ -619,8 +563,29 @@ h3 {
   font-size: 0.92rem;
 }
 
-/* ---------- Планшеты ---------- */
-@media (max-width: 1000px) {
+/* ---------- Планшеты и небольшие ноутбуки ---------- */
+@media (max-width: 1050px) {
+  .header-inner {
+    gap: 16px;
+  }
+
+  .brand-name {
+    font-size: 1.05rem;
+  }
+
+  .header-info-item {
+    padding: 8px 10px;
+  }
+
+  .header-info-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.03em;
+  }
+
+  .header-info-value {
+    font-size: 0.76rem;
+  }
+
   .hero-grid {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -658,10 +623,6 @@ h3 {
 
 /* ---------- Телефоны ---------- */
 @media (max-width: 760px) {
-  :root {
-    --header: 64px;
-  }
-
   html {
     scroll-padding-top: 16px;
   }
@@ -670,55 +631,32 @@ h3 {
     width: calc(100% - 32px);
   }
 
+  /* На телефоне название сверху, данные под ним */
+  .header-inner {
+    min-height: auto;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 16px;
+    padding-top: 18px;
+    padding-bottom: 16px;
+  }
+
+  .brand {
+    align-self: flex-start;
+  }
+
   .brand-name {
     font-size: 1.12rem;
   }
 
-  .nav-toggle {
-    display: inline-block;
-    flex-shrink: 0;
-  }
-
-  .site-header {
-    position: sticky;
-  }
-
-  .site-nav {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 20px;
-    padding: 20px 16px 24px;
-    background: var(--paper);
-    border-bottom: 2px solid var(--ink);
-  }
-
-  .site-nav.is-open {
-    display: flex;
-  }
-
-  .site-nav ul {
-    flex-direction: column;
-    gap: 16px;
-    font-size: 1.1rem;
-  }
-
-  .site-nav .btn {
+  .header-info {
     width: 100%;
-  }
-
-  /* Адрес, график и выезд в шапке */
-  .header-info-grid {
     grid-template-columns: 1fr;
   }
 
-  .header-info-item,
-  .header-info-item:first-child,
-  .header-info-item:last-child {
+  .header-info-item {
+    gap: 3px;
     padding: 10px 0;
     border-left: 0;
     border-top: 1px solid var(--line);
@@ -726,6 +664,11 @@ h3 {
 
   .header-info-item:first-child {
     border-top: 0;
+  }
+
+  .header-info-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.07em;
   }
 
   .header-info-value {
@@ -812,7 +755,7 @@ h3 {
   }
 }
 
-/* ---------- Уменьшение анимации по настройкам устройства ---------- */
+/* ---------- Уменьшение анимации ---------- */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
