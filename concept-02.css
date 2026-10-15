@@ -32,20 +32,29 @@ body {
   font-family: var(--sans);
   color: var(--ink);
   background-color: var(--bg);
+  line-height: 1.6;
 
-  /*
-   * Клеточная сетка привязана к левому краю .shell.
-   * При ширине окна от 1200px контейнер имеет ширину 1152px,
-   * то есть ровно 36 клеток по 32px.
-   */
+  /* Единая сетка на всю ширину экрана */
   background-image:
-    linear-gradient(rgba(31, 78, 121, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(31, 78, 121, 0.05) 1px, transparent 1px);
+    linear-gradient(
+      to bottom,
+      rgba(31, 78, 121, 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to right,
+      rgba(31, 78, 121, 0.05) 1px,
+      transparent 1px
+    );
+
   background-size: var(--cell) var(--cell);
+
+  /* Совмещение сетки с левым краем основного контейнера */
   background-position:
     calc((100vw - min(1152px, 100vw - 48px)) / 2) 0,
     calc((100vw - min(1152px, 100vw - 48px)) / 2) 0;
-  line-height: 1.6;
+
+  background-repeat: repeat;
 }
 
 img,
@@ -1042,10 +1051,7 @@ textarea:focus {
     --cell: 16px;
   }
 
-  /*
-   * Мобильный контейнер имеет отступ 16px.
-   * Начинаем сетку от той же вертикальной линии.
-   */
+  /* Сетка совмещается с отступом мобильного контейнера */
   body {
     background-position: 16px 0, 16px 0;
   }
@@ -1232,115 +1238,5 @@ textarea:focus {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-  }
-}
-
-/* === ИСПРАВЛЕНИЕ СЕТКИ: ПРИВЯЗКА К КРАЯМ КОНТЕЙНЕРА === */
-
-body {
-  position: relative;
-  isolation: isolate;
-  background-image: none;
-}
-
-/* Сетка ограничена шириной основного контейнера */
-body::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-
-  width: min(1152px, calc(100% - 48px));
-
-  pointer-events: none;
-
-  background-image:
-    linear-gradient(
-      rgba(31, 78, 121, 0.05) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(31, 78, 121, 0.05) 1px,
-      transparent 1px
-    );
-
-  background-size: var(--cell) var(--cell);
-  background-position: 0 0;
-  background-repeat: repeat;
-}
-
-/* Мобильная версия: отступы контейнера по 16px */
-@media (max-width: 760px) {
-  body::before {
-    width: calc(100% - 32px);
-  }
-}
-
-/* Сетка продолжается по всей ширине экрана */
-body::before {
-  width: 100%;
-  left: 0;
-  transform: none;
-  background-position:
-    calc((100vw - min(1152px, 100vw - 48px)) / 2) 0,
-    calc((100vw - min(1152px, 100vw - 48px)) / 2) 0;
-}
-
-@media (max-width: 760px) {
-  body::before {
-    background-position: 16px 0, 16px 0;
-  }
-}
-
-/* ==================================================
-   ЕДИНАЯ СЕТКА ФОНА
-   Непрерывные клетки одинакового размера по всей странице
-   ================================================== */
-
-body {
-  position: static;
-  isolation: auto;
-
-  background-color: var(--bg);
-
-  background-image:
-    linear-gradient(
-      to bottom,
-      rgba(31, 78, 121, 0.05) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      to right,
-      rgba(31, 78, 121, 0.05) 1px,
-      transparent 1px
-    );
-
-  background-size: var(--cell) var(--cell);
-
-  /* Привязка сетки к левому краю основного контейнера */
-  background-position:
-    calc((100vw - min(1152px, 100vw - 48px)) / 2) 0,
-    calc((100vw - min(1152px, 100vw - 48px)) / 2) 0;
-
-  background-repeat: repeat;
-}
-
-/* Отключаем предыдущие варианты псевдоэлемента */
-body::before {
-  content: none !important;
-}
-
-/* Мобильная сетка */
-@media (max-width: 760px) {
-  :root {
-    --cell: 16px;
-  }
-
-  body {
-    background-position: 16px 0, 16px 0;
   }
 }
