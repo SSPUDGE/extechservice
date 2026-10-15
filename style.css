@@ -385,7 +385,7 @@ h3 {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  z-index: -1;
+  z-index: -2;
 }
 
 .advantages::after {
@@ -399,7 +399,7 @@ h3 {
 
 .advantages > .container {
   position: relative;
-  z-index: 1;
+  z-index: 0;
 }
 
 .advantages-layout {
