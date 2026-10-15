@@ -371,34 +371,34 @@ h3 {
 }
 
 .advantages {
-  position: relative;
-  overflow: hidden;
-  background-color: var(--bg-elevated);
-}
-
-/* То же фото, что в первом экране, под тёмным слоем для читаемости текста */
-.advantages::before,
-.advantages::after {
-  content: "";
-  position: absolute;
-  inset: 0;
+position: relative;
+isolation: isolate;
+overflow: hidden;
+background-color: var(--bg-elevated);
 }
 
 .advantages::before {
-  background-image: url("images/hero-rem1.jpg");
-  background-size: cover;
-  background-position: center;
+content: "";
+position: absolute;
+inset: 0;
+background-image: url("./images/hero-rem1.jpg");
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+z-index: -2;
 }
 
 .advantages::after {
-  background:
-    linear-gradient(180deg, rgba(16, 18, 20, 0.88) 0%, rgba(16, 18, 20, 0.84) 50%, rgba(16, 18, 20, 0.92) 100%),
-    linear-gradient(90deg, rgba(16, 18, 20, 0.5), transparent 60%);
+content: "";
+position: absolute;
+inset: 0;
+background: rgba(10, 14, 18, 0.55);
+z-index: -1;
 }
 
 .advantages > .container {
-  position: relative;
-  z-index: 1;
+position: relative;
+z-index: 1;
 }
 
 .advantages-layout {
