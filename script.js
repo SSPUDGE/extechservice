@@ -133,3 +133,14 @@
 
   setHeroImage();
 })();
+
+/* Подстановка выбранной услуги в форму заявки */
+document.querySelectorAll(".service-card-link").forEach((link) => {
+  link.addEventListener("click", () => {
+    const machineField = document.querySelector("#machine");
+
+    if (machineField) {
+      machineField.value = link.dataset.service;
+    }
+  });
+});
