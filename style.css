@@ -77,6 +77,31 @@ textarea {
   margin: 0 auto;
 }
 
+.topbar {
+  background: #0b0d0e;
+  border-bottom: 1px solid var(--line);
+}
+
+.topbar-inner {
+  display: flex;
+  justify-content: flex-end;
+  gap: 28px;
+  padding-block: 8px;
+}
+
+.topbar a {
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+
+.topbar a:hover,
+.topbar a:focus-visible {
+  color: var(--yellow);
+}
+
 .site-header {
   position: sticky;
   top: 0;
@@ -170,6 +195,13 @@ textarea {
 .btn-primary:hover,
 .btn-primary:focus-visible {
   background: var(--yellow-strong);
+}
+
+/* Тёмный текст на жёлтом: правило .site-nav a иначе красит кнопку в серый */
+.site-nav a.btn-primary,
+.site-nav a.btn-primary:hover,
+.site-nav a.btn-primary:focus-visible {
+  color: #141414;
 }
 
 .btn-ghost {
@@ -311,6 +343,7 @@ h3 {
   grid-column: span 2;
   background: var(--bg-card);
   border: 1px solid var(--line);
+  border-top: 3px solid var(--yellow);
   padding: 28px 24px;
   min-height: 240px;
 }
@@ -318,17 +351,6 @@ h3 {
 .service-grid .card:nth-child(4),
 .service-grid .card:nth-child(5) {
   grid-column: span 3;
-}
-
-.card-index,
-.step-num {
-  display: block;
-  color: var(--yellow);
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  margin-bottom: 16px;
 }
 
 .card h3,
@@ -349,7 +371,34 @@ h3 {
 }
 
 .advantages {
-  background: var(--bg-elevated);
+  position: relative;
+  overflow: hidden;
+  background-color: var(--bg-elevated);
+}
+
+/* То же фото, что в первом экране, под тёмным слоем для читаемости текста */
+.advantages::before,
+.advantages::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.advantages::before {
+  background-image: url("https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1920&q=80");
+  background-size: cover;
+  background-position: center;
+}
+
+.advantages::after {
+  background:
+    linear-gradient(180deg, rgba(16, 18, 20, 0.88) 0%, rgba(16, 18, 20, 0.84) 50%, rgba(16, 18, 20, 0.92) 100%),
+    linear-gradient(90deg, rgba(16, 18, 20, 0.5), transparent 60%);
+}
+
+.advantages > .container {
+  position: relative;
+  z-index: 1;
 }
 
 .advantages-layout {
@@ -479,7 +528,7 @@ textarea:focus-visible,
 
 .contact-card {
   background: var(--bg-card);
-  border-left: 3px solid var(--yellow);
+  border-top: 3px solid var(--yellow);
   padding: 20px 18px;
 }
 
