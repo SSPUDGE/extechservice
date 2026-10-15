@@ -55,8 +55,10 @@
   });
 
   /* ===== Экскаватор в блоке «Обсудить ремонт» =====
-     Когда блок появляется на экране, добавляем класс is-in:
-     CSS плавно выдвигает фото слева. Срабатывает один раз. */
+     Блок докручен до нужного места (видно 35%): добавляем is-in,
+     и CSS выдвигает фото слева.
+     Блок полностью ушёл с экрана (вверх или вниз): снимаем is-in,
+     фото возвращается за край и при следующем подходе выедет снова. */
   function initDigger() {
     var track = document.querySelector(".dig");
     if (!track) return;
@@ -71,12 +73,14 @@
     var observer = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          track.classList.add("is-in");
-          observer.unobserve(track);
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
+            track.classList.add("is-in");
+          } else if (!entry.isIntersecting) {
+            track.classList.remove("is-in");
+          }
         });
       },
-      { threshold: 0.35 }
+      { threshold: [0, 0.35] }
     );
     observer.observe(track);
   }
