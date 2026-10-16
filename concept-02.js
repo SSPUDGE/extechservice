@@ -284,4 +284,29 @@
 
     updateCarousel();
   }
+
+  /* Экскаватор в блоке «Обсудить ремонт»: выезжает слева при подходе к блоку,
+     уезжает за левый край, когда блок полностью ушёл с экрана */
+  var dig = document.querySelector(".dig");
+
+  if (
+    dig &&
+    "IntersectionObserver" in window &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
+    dig.classList.add("is-armed");
+
+    new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
+            dig.classList.add("is-in");
+          } else if (!entry.isIntersecting) {
+            dig.classList.remove("is-in");
+          }
+        });
+      },
+      { threshold: [0, 0.35] }
+    ).observe(dig);
+  }
 })();
