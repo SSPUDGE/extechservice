@@ -638,12 +638,17 @@ figcaption {
 
 .discuss-copy h2 {
   max-width: 16ch;
+  margin-bottom: 24px;
+}
+
+.discuss-copy .lead {
+  margin-bottom: 24px;
 }
 
 .contact-points {
   display: grid;
-  gap: 16px;
-  margin-top: 32px;
+  gap: 12px;
+  margin-top: 24px;
 }
 
 .contact-points > div {
@@ -1214,7 +1219,7 @@ textarea:focus {
   }
 
   .contact-points {
-    margin-top: 32px;
+    margin-top: 24px;
   }
 
   .contact-points > div {
