@@ -1356,3 +1356,40 @@ textarea:focus {
     padding-inline: 2px;
   }
 }
+
+/* Экскаватор в блоке «Обсудить ремонт или вызвать мастера» */
+.dig {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 32px;
+  border-bottom: 2px solid var(--line);
+  /* слева открыто до края страницы, справа и сверху обрезано */
+  clip-path: inset(0 0 0 -100vw);
+}
+
+/* scaleX(-1) отражает фото: ковш смотрит вправо, на анкету */
+.dig-img {
+  width: min(100%, 340px);
+  height: auto;
+  transform: scaleX(-1);
+  transition: transform 2.2s cubic-bezier(0.16, 0.84, 0.3, 1);
+}
+
+/* Стартовое положение за левым краем экрана включает только скрипт */
+.dig.is-armed .dig-img {
+  transform: translate3d(-100vw, 0, 0) scaleX(-1);
+}
+
+.dig.is-armed.is-in .dig-img {
+  transform: translate3d(0, 0, 0) scaleX(-1);
+}
+
+@media (max-width: 760px) {
+  .dig {
+    margin-top: 24px;
+  }
+
+  .dig-img {
+    width: min(100%, 300px);
+  }
+}
